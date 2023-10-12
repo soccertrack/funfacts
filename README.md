@@ -158,7 +158,96 @@ const { address: { city, postalCode } } = user;
 console.log(city);  
 ```
 
-### 09. let/xonst vs var
+### 09. Nobody should use *var*
+var is function scoped and can be re-declared many times without throwing any error. The code below looks like it should have compile error but it's ok thanks to var.
+
+```javascript
+function foo() {
+    if(true) {
+        var a = 0; // declare a 1st time
+    }
+    console.log(a); // accessing a outside of their scope, no problem
+    var a = 1;      // declare a 2nd time, no problem
+    console.log(a); // we are accessing the correct value
+}
+foo();
+```
+
+### 10. let or const
+let and const are block scoped. You must initialize a const value and can't change it. You can have let without initialization and you can reassign the value in let. If you have to reassign the reference in your code, use let. Otherwise, always use const.
+
+```javascript
+function foo() {
+    const a = 42;
+    let b = 43;
+    const c = ['a', 'b', 'c'];
+    
+    a = 44;      // error, can't reassing
+    b = 44;      // ok
+    c = [];      // error, can't reassing
+    c.push('d'); // ok, because you are not changing c.
+}
+foo();
+```
+### 11. Object spreading ...
+Object spreading is a convenient feature in Javascript to do quick shallow copy or merging values. It makes your code more concise.
+
+```javascript
+const obj = { a: 1, b: 2 };
+const copy = { ...obj };    // shallow copy
+
+const obj2 = { c: 3, d: 4 };
+const merged = { ...obj, ...obj2 }; // merged object
+```
+
+### 12. Javascript engine and it's environment
+All the Javascript engines out there (V8, SpiderMonkey, JSCore, Chakra) are single threaded. It has a single message loop / queue which is process task one at a time. Environment around Javascript such as Browser or Node.js env have multiple threads. A fetch call is done in i/o thread and when it return, it will callback and put into message loop. This single thread is also known as UI thread or Main thread.
+
+### 13. Higher order functions
+Higher order function facilitates functional programming concepts and allow for more modular, concise, flexible, and reusable code. Here are the functions commonly used:
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// map
+const squaredNumbers = numbers.map(num => num * num);       // returns [1, 4, 9, 16, 25]
+// filter
+const evenNumbers = numbers.filter(num => num % 2 === 0);   // returns [2, 4]
+// reduce
+const sum = numbers.reduce((acc, num) => acc + num, 0);     // return 15
+// forEach
+numbers.forEach(num => console.log(num));                   // prints 12345
+// sort
+const sortedNumbers = numbers.sort((a, b) => b - a);        // returns [5, 4, 3, 2, 1]
+// every
+const allEven = numbers.every(num => num % 2 === 0);        // return false because not everything is even
+// some
+const hasEven = numbers.some(num => num % 2 === 0);         // return true because there's at least 1 even number
+// find
+const result = numbers.find(num => num > 3);                // return 4, first element that match criteria
+// flatMap
+const arr = [1, 2, [3, 4, 5]];
+const flattened = arr.flatMap(num => num);
+console.log(flattened)                                      // returns 1, 2, 3, 4, 5. flatten hierarchy.
+
+```
+
+
+### 14. for loop vs forEach
+Considering that we have an array, is it better to use traditional for loop or modern high level forEach? It is better to use traditional for loop because of performance, more control and ability to terminate early.
+
+```javascript
+const arr = [1,2,3,4,5];
+
+arr.forEach(e => {     // forEach has overhead of creating closure.
+   console.log(e);
+});
+
+for (const e of arr) { // more control structure with regular for loop.
+  console.log(e);
+  if(e === 3) break;   // for loop can exit early, forEach can't.
+  if(e === 4) return;  // exit entire function.
+}```
 
 fast vs slow mode
 single message queue
