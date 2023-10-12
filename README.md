@@ -290,6 +290,15 @@ console.log(a === NaN)   // false, woah
 console.log(a === a)     // false, what?!!
 ```
 
+### 18. Trusting array.length can have side-effect
+The implementation of length is a little weird. If we assign to an index directly, the length will be index+1. Javascript never allocate the entire array. So becareful as this can be a very subtle bug that takes a long time to debug.
+
+```javascript
+const a = [];
+a[10000000] = 5;
+console.log(a.length); // returns 10000001
+```
+
 fast vs slow mode
 single message queue
 async await
