@@ -280,6 +280,16 @@ realMap.set('key2', 'value2');
 console.log(realMap.get('key1'));
 ```
 
+### 17. Never ever compare a NaN
+The NaN value in JavaScript is of the type number. NaN is not equal to itself; hence, comparing NaN to anything, even itself, will result in false.
+
+```javascript
+const a = NaN;
+console.log(a == NaN)    // false
+console.log(a === NaN)   // false, woah
+console.log(a === a)     // false, what?!!
+```
+
 fast vs slow mode
 single message queue
 async await
