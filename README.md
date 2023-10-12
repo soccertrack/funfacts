@@ -262,6 +262,24 @@ graph TD;
     Bytecode --> MachineCode[MachineCode];
 ```
 
+### 16. {} vs Map for Dictionary functionality
+{} has been used as dictionary for a long time due to the lack of Javascript Map support. Map is now available (see code). One should always use Map. The reason being Map is implemented in hashmap while {} is simply regular object in Javascript. Retrieval for Map will be O(1) and {} will be O(n). In Map, order of insertion is preserved.
+
+```javascript
+const fakeMap = {
+  key1: 'value1',
+  key2: 'value2'
+};
+
+console.log(fakeMap.key1); 
+
+const realMap = new Map();
+realMap.set('key1', 'value1');
+realMap.set('key2', 'value2');
+
+console.log(realMap.get('key1'));
+```
+
 fast vs slow mode
 single message queue
 async await
