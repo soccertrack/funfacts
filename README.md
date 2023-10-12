@@ -247,7 +247,20 @@ for (const e of arr) { // more control structure with regular for loop.
   console.log(e);
   if(e === 3) break;   // for loop can exit early, forEach can't.
   if(e === 4) return;  // exit entire function.
-}```
+}
+```
+
+### 15. Script to machine code
+Javascript engine can either use Bytecode (interpreted) or Machine Code (compiled) for running program. In general, scripts must be turn into AST tree (abstract syntax tree). It will then turn into bytecode which is good enough for interpreter to run. 
+
+When the engine detect some hot path/segment, it will optimize those path by compiling them into machine code (native). This code will run the fastest. The optimized code is based on some assumptions (such as certain properties always there etc). When the assumption is invalid, de-optimization happens and it will throw away the generated machine code and back to interpreted mode.
+
+```mermaid
+graph TD;
+    Script[Script] --> ASTTree[ASTTree];
+    ASTTree --> Bytecode[Bytecode];
+    Bytecode --> MachineCode[MachineCode];
+```
 
 fast vs slow mode
 single message queue
