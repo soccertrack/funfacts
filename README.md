@@ -447,7 +447,9 @@ worker2.on('message', (message) => {
 });
 ```
 
+### 26. Prefer null over undefined
+It is common to check for both undefined and null for error. I think setting things to null or initialize to null. Undefined is really something forgotten. If you find any undefined, you should go fix it.
 
-### 26. Offline manifest
+### 27. Offline manifest
 
-### 27. Service Worker
+### 28. Service Worker
