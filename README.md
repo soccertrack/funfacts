@@ -601,6 +601,15 @@ keyObject = null;
 // The associated entry in the WeakMap will also be removed automatically.
 ```
 
+### 34. Can Javascript handle binary?
+Yes. Mainly using **Buffer** class. See examples below"
+
+```javascript
+const byteArray = [0x48, 0x65, 0x6C, 0x6C, 0x6F]; // ASCII codes for 'Hello'
+const bufferFromByteArray = Buffer.from(byteArray);
+
+console.log('Buffer from byte array:', bufferFromByteArray);
+```
 ### 32. Offline manifest
 
 ### 33. Service Worker
