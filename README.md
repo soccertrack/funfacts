@@ -1,4 +1,4 @@
-# r@nd0m javascript b1t5
+# R@nd0m javascript b1t5
 ```
  /\_/\  
 ( o.o ) 
@@ -666,6 +666,43 @@ const button = document.getElementById('button');
 button.addEventListener('click', function() {
   console.log(this);  // <-- Refers to the button element
 });
+```
+
+### 38. Javascript statement doesn't need ; close anymore.
+This is good to know but it really doesn't matter to me. I think it depends on your codebase. Just be consistent with it.
+
+### 39. SharedArrayBuffer
+When passing data between web workers and main, data has to be serialized, deserialized and copy. This is inefficient especially for ML related work. SharedArrayBuffer is introduced and now you can share buffer across different contexts.
+
+```javascript
+const buffer = new SharedArrayBuffer(16);
+
+// create worker and pass buffer reference to it
+const worker = new Worker('worker.js');
+worker.postMessage({ buffer });
+
+// worker.js
+onmessage = (event) => {
+  const { buffer } = event.data;
+  const int32Array = new Int32Array(buffer);
+
+  // Access and manipulate the shared buffer
+  int32Array[0] = 33;
+};
+```
+
+### 40. XXXL number. BigInt
+Javascript now support BigInt which can go larger than 2^53 - 1 (limit for number).
+
+```javascript
+const bigIntA = 1234567890123456789012345678901234567890n;
+const bigIntB = BigInt('987654321098765432109876543210');
+
+const sum = bigIntA + bigIntB;
+const product = bigIntA * bigIntB;
+
+console.log('Sum:', sum);         // Outputs: Sum: 1234567890123456789999999999999999990100n
+console.log('Product:', product); // Outputs: Product: 1219326311126352697579906220182235292041254607981000n
 ```
 
 ### 38. Offline manifest
