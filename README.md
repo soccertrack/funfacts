@@ -299,9 +299,108 @@ a[10000000] = 5;
 console.log(a.length); // returns 10000001
 ```
 
-fast vs slow mode
-single message queue
-async await
+### 19. Javascript Promise
+Promise allows you to handle asynchronous operations in a more organized and efficient manner. Promise can return resolve for success and reject for failure. While it is waiting, it is in Pending state.
+
+Simple implementation of a function that returns a Promise.
+```javascript
+function waitForMs(ms)
+ return new Promise((resolve, reject) => {
+   setTimeout(() => {
+     const success = true;
+     if (success) {
+       resolve('Operation successful');
+     } else {
+       reject(new Error('Operation failed'));
+     }
+   }, ms);
+ });
+}
+```
+State Machine for a Promise
+```mermaid
+stateDiagram
+    [*] --> Pending
+    Pending --> Fulfilled : Resolve
+    Pending --> Rejected : Reject
+    Fulfilled --> [*] : Transition to pending
+    Rejected --> [*] : Transition to pending
+```
+
+### 20. Handling Promise that returned
+You can use then..catch pattern or async await pattern. Async await pattern makes the code to be more natural to understand as though it is linear & synchronous. Then .. catch pattern looks like callback and using closure. It's really a matter of preference but async await can do more complex stuffs.
+
+```javascript
+// using then.catch pattern
+waitForMs(200)
+  .then((successMessage) => {
+    console.log('Success:', successMessage);
+  })
+  .catch((error) => {
+    console.error('Error:', error.message);
+  });
+
+// using async await pattern
+async function calling() {
+  try {
+    const result = await waitforMs(200);
+    console.log('Success:', result);
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+```
+### 21. Wait for All Promises
+You can use Promise.all(arrayOfPromises) to wait for all promise to resolve. If any promise reject, Promise.all will return immidietely and error. This is a good way to handle task synchronzation.
+
+```javascript
+const promise1 = Promise.resolve('Resolved Promise A');
+const promise2 = Promise.resolve('Resolved Promise B');
+const promise3 = Promise.reject(new Error('Rejected Promise C'));
+
+// this will print 'At least one Promise rejected'
+Promise.all([promise1, promise2, promise3])
+  .then((values) => {
+    console.log('All Promises resolved:', values);
+  })
+  .catch((error) => {
+    console.error('At least one Promise rejected:', error);
+  });
+
+// this will print 'All Promises resolved'.
+Promise.all([promise1, promise2])
+  .then((values) => {
+    console.log('All Promises resolved:', values);
+  })
+  .catch((error) => {
+    console.error('At least one Promise rejected:', error);
+  });
+```
+
+### 22. Wait for first promise to resolve.
+There are use cases where we want to get the first promise that resolve, exit and not worry about the other promises.
+
+```javascript
+const promises = [
+  new Promise((resolve) => setTimeout(() => resolve('Promise A'), 3000)),
+  new Promise((resolve) => setTimeout(() => resolve('Promise B'), 1600)),
+  new Promise((resolve) => setTimeout(() => resolve('Promise C'), 1500))
+];
+
+Promise.race(promises)
+  .then((result) => console.log('Promise resolved:', result))
+  .catch((error) => console.error('Promise rejected:', error));
+```
+
+### 23. What happen when we await Promise(), how does javascript resume.
+Javascript is single threaded. When awaiting a promise, Javascript won't run the next line until promise is fulfilled.
+When encountering an await statement, the JavaScript engine registers a continuation to be executed once the awaited Promise settles. Once the Promise settles, the registered continuation is added to the Javascript task queue. The JavaScript event loop checks the Javascript task queue and, if not empty, processes the tasks in the order they were added. The registered continuation (the code after the await statement) is executed.
+
+```javascript
+console.log('calling await');
+await waitForMs(10000);            // wait for 10s but what happen here?
+console.log('promise completed');  // will print after 10s
+```
+
 offline manifest
-wait for one, wait for all
 web worker
