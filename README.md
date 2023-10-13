@@ -625,6 +625,49 @@ Module.onRuntimeInitialized = function() {
 };
 ```
 
-### 32. Offline manifest
+### 36. What is Javascript bridge
+Javascript bridge is a mechanism where Javascript code (normally in a webview) can communicate 2-way with their host (iOS native, Android native, Flutter). This is very common in Mobile development and it's very common to have a webview within the application.
 
-### 33. Service Worker
+```javascript
+// iOS
+function callNative() {
+    window.webkit.messageHandlers.iOS.postMessage("Hello from JavaScript!");
+}
+// Flutter
+function sendMessageToFlutter() {
+  const message = { type: 'FROM_WEBVIEW', data: 'Hello, Flutter!' };
+  window.postMessage(JSON.stringify(message));
+}
+```
+
+### 37. 'this' reference in Javascript
+'this' in Javascript is referring to context and scope. Let's illustrate with code:
+
+```javascript
+// use1: adding property / method
+function Person(name) {
+  this.name = name;      // <- add property
+  this.sayHi = () => {}  // <- add arrow function
+}
+
+const person = new Person('Lenny');
+console.log(person.name);
+
+// use2: accessing property using this
+const obj = {
+  prop: 'Hello',
+  greet: function() {
+    console.log(this.prop);  // <-- accessing the object's property using this
+  }
+};
+
+// this in event handling
+const button = document.getElementById('button');
+button.addEventListener('click', function() {
+  console.log(this);  // <-- Refers to the button element
+});
+```
+
+### 38. Offline manifest
+
+### 39. Service Worker
