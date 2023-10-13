@@ -1,4 +1,4 @@
-# Fun facts about Javascript
+# Random Javascript bits
 ```
  /\_/\  
 ( o.o ) 
@@ -66,7 +66,7 @@ function greet() {
   console.log(`Hello, ${this.firstName} ${this.lastName}`);
 }
 
-const person = { firstName: 'Kenny', lastName: 'Lim' };
+const person = { firstName: 'Lenny', lastName: 'Kim' };
 // instead of object.method, we are doing method(obj, ...)
 greet.call(person);
 ```
@@ -80,7 +80,7 @@ function greet(foo) {
   console.log(`${foo}, ${this.firstName} ${this.lastName}`);
 }
 
-const person = { firstName: 'Kenny', lastName: 'Lim' };
+const person = { firstName: 'Lenny', lastName: 'Kim' };
 
 // using call
 greet.call(person, 'foo');
@@ -99,7 +99,7 @@ function greet(foo) {
   console.log(`${foo}, ${this.firstName} ${this.lastName}`);
 }
 
-const person = { firstName: 'Kenny', lastName: 'Lim' };
+const person = { firstName: 'Lenny', lastName: 'Kim' };
 
 // using call
 greet.call(person, 'foo');
@@ -121,8 +121,47 @@ console.log(42 === '42');  // Outputs: false (different types)
 
 ```
 
+### 07. Inheritance the older way via Prototype
+Prototype is a fundamental aspect of how objects and inheritance work in the language. Each JavaScript object has a prototype, which is another object that the current object inherits properties and methods from.
 
-### 07. Proper class inheritance in Javascript
+```javascript
+// Superclass: Person
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.greet = function() {
+  console.log('my name is ' + this.name);
+};
+
+// Subclass: Student
+function Student(name, studentId) {
+  // Call the superclass constructor to initialize 'name'
+  Person.call(this, name);
+  
+  // Initialize additional properties specific to Student
+  this.studentId = studentId;
+}
+
+// Set up inheritance: Student inherits from Person
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.constructor = Student;
+
+// Additional method for Student
+Student.prototype.showId = function() {
+  console.log('Student ID:', this.studentId);
+};
+
+// Creating instances of Student
+const student1 = new Student('Kenny', 'AA123');
+const student2 = new Student('Lenny', 'BBB234');
+
+// Using methods from both the Person and Student classes
+student1.greet();      
+student1.showId();
+```
+
+### 08. Proper class inheritance in Javascript
 extends keyword is introduced in ES6.
 
 ```javascript
@@ -141,7 +180,10 @@ class Student extends Person {
 }
 ```
 
-### 08. Object deconstructing
+### 09. Prototype Chain
+When you are calling a method or access a property from an object. If the method or property is not found in the object, it will attempt to search in the prototype object. If that is not available, it will continue to walk up the prototype chain. If nothing is found, it will return **undefined**.
+
+### 10. Object deconstructing
 Object destructuring allows you to extract properties from an object and assign them to variables in a more concise and convenient way. The name has to match the property name and only need to do assignment on the properties you are interested.
 
 ```javascript
@@ -158,7 +200,7 @@ const { address: { city, postalCode } } = user;
 console.log(city);  
 ```
 
-### 09. Nobody should use *var*
+### 11. Nobody should use *var*
 var is function scoped and can be re-declared many times without throwing any error. The code below looks like it should have compile error but it's ok thanks to var.
 
 ```javascript
@@ -173,7 +215,7 @@ function foo() {
 foo();
 ```
 
-### 10. let or const
+### 12. let or const
 let and const are block scoped. You must initialize a const value and can't change it. You can have let without initialization and you can reassign the value in let. If you have to reassign the reference in your code, use let. Otherwise, always use const.
 
 ```javascript
@@ -189,7 +231,7 @@ function foo() {
 }
 foo();
 ```
-### 11. Object spreading ...
+### 13. Object spreading ...
 Object spreading is a convenient feature in Javascript to do quick shallow copy or merging values. It makes your code more concise.
 
 ```javascript
@@ -200,10 +242,10 @@ const obj2 = { c: 3, d: 4 };
 const merged = { ...obj, ...obj2 }; // merged object
 ```
 
-### 12. Javascript engine and it's environment
-All the Javascript engines out there (V8, SpiderMonkey, JSCore, Chakra) are single threaded. It has a single message loop / queue which is process task one at a time. Environment around Javascript such as Browser or Node.js env have multiple threads. A fetch call is done in i/o thread and when it return, it will callback and put into message loop. This single thread is also known as UI thread or Main thread.
+### 14. Javascript engine and it's environment
+All the Javascript engines out there are single threaded. It has a single message loop / queue which process one task at a time. Environment around Javascript such as Browser or Node.js env have multiple threads. A fetch call is done in i/o thread and when it return, it will callback and put into message loop. This single thread is also known as UI thread or Main thread. Because it is single threaded, there's no need to do lock for thread synchronization.
 
-### 13. Higher order functions
+### 15. Higher order functions
 Higher order function facilitates functional programming concepts and allow for more modular, concise, flexible, and reusable code. Here are the functions commonly used:
 
 ```javascript
@@ -233,7 +275,7 @@ console.log(flattened)                                      // returns 1, 2, 3, 
 ```
 
 
-### 14. for loop vs forEach
+### 16. for loop vs forEach
 Considering that we have an array, is it better to use traditional for loop or modern high level forEach? It is better to use traditional for loop because of performance, more control and ability to terminate early.
 
 ```javascript
@@ -250,7 +292,7 @@ for (const e of arr) { // more control structure with regular for loop.
 }
 ```
 
-### 15. Script to machine code
+### 17. Script to machine code
 Javascript engine can either use Bytecode (interpreted) or Machine Code (compiled) for running program. In general, scripts must be turn into AST tree (abstract syntax tree). It will then turn into bytecode which is good enough for interpreter to run. 
 
 When the engine detect some hot path/segment, it will optimize those path by compiling them into machine code (native). This code will run the fastest. The optimized code is based on some assumptions (such as certain properties always there etc). When the assumption is invalid, de-optimization happens and it will throw away the generated machine code and back to interpreted mode.
@@ -262,7 +304,7 @@ graph TD;
     Bytecode --> MachineCode[MachineCode];
 ```
 
-### 16. {} vs Map for Dictionary functionality
+### 18. {} vs Map for Dictionary functionality
 {} has been used as dictionary for a long time due to the lack of Javascript Map support. Map is now available (see code). One should always use Map. The reason being Map is implemented in hashmap while {} is simply regular object in Javascript. Retrieval for Map will be O(1) and {} will be O(n). In Map, order of insertion is preserved.
 
 ```javascript
@@ -280,7 +322,7 @@ realMap.set('key2', 'value2');
 console.log(realMap.get('key1'));
 ```
 
-### 17. Never ever compare a NaN
+### 19. Never ever compare a NaN
 The NaN value in JavaScript is of the type number. NaN is not equal to itself; hence, comparing NaN to anything, even itself, will result in false.
 
 ```javascript
@@ -290,7 +332,7 @@ console.log(a === NaN)   // false, woah
 console.log(a === a)     // false, what?!!
 ```
 
-### 18. Trusting array.length can have side-effect
+### 20. Trusting array.length can have side-effect
 The implementation of length is a little weird. If we assign to an index directly, the length will be index+1. Javascript never allocate the entire array. So becareful as this can be a very subtle bug that takes a long time to debug.
 
 ```javascript
@@ -299,7 +341,7 @@ a[10000000] = 5;
 console.log(a.length); // returns 10000001
 ```
 
-### 19. Javascript Promise
+### 21. Javascript Promise
 Promise allows you to handle asynchronous operations in a more organized and efficient manner. Promise can return resolve for success and reject for failure. While it is waiting, it is in Pending state.
 
 Simple implementation of a function that returns a Promise.
@@ -327,7 +369,7 @@ stateDiagram
     Rejected --> [*] : Transition to pending
 ```
 
-### 20. Handling Promise that returned
+### 22. Handling Promise that returned
 You can use then..catch pattern or async await pattern. Async await pattern makes the code to be more natural to understand as though it is linear & synchronous. Then .. catch pattern looks like callback and using closure. It's really a matter of preference but async await can do more complex stuffs.
 
 ```javascript
@@ -350,7 +392,7 @@ async function calling() {
   }
 }
 ```
-### 21. Wait for All Promises
+### 23. Wait for All Promises
 You can use Promise.all(arrayOfPromises) to wait for all promise to resolve. If any promise reject, Promise.all will return immidietely and error. This is a good way to handle task synchronzation.
 
 ```javascript
@@ -377,7 +419,7 @@ Promise.all([promise1, promise2])
   });
 ```
 
-### 22. Wait for first promise to resolve.
+### 24. Wait for first promise to resolve.
 There are use cases where we want to get the first promise that resolve, exit and not worry about the other promises.
 
 ```javascript
@@ -392,9 +434,14 @@ Promise.race(promises)
   .catch((error) => console.error('Promise rejected:', error));
 ```
 
-### 23. What happen when we await Promise(), how does javascript resume.
+### 25. What happen when we await Promise(), how does javascript resume.
 Javascript is single threaded. When awaiting a promise, Javascript won't run the next line until promise is fulfilled.
-When encountering an await statement, the JavaScript engine registers a continuation to be executed once the awaited Promise settles. Once the Promise settles, the registered continuation is added to the Javascript task queue. The JavaScript event loop checks the Javascript task queue and, if not empty, processes the tasks in the order they were added. The registered continuation (the code after the await statement) is executed.
+When encountering an await statement:
+
+- JavaScript engine registers a continuation to be executed once the awaited Promise settles.
+- Once the Promise settles, the registered continuation is added to the Javascript task queue.
+- JavaScript event loop checks the Javascript task queue and, if not empty, processes the tasks in the order they were added.
+- The registered continuation (the code after the await statement) is executed.
 
 ```javascript
 console.log('calling await');
@@ -402,7 +449,7 @@ await waitForMs(10000);            // wait for 10s but what happen here?
 console.log('promise completed');  // will print after 10s
 ```
 
-### 24. Using additional thread to do work
+### 26. Using additional thread to do work
 You are right, Javascript engine is single threaded. The environment around Javascript such as Node.js or browser do support Web Worker API which allows you to create threads and have mechanism to communicate back to Javascript main thread. Web Workers allow you to perform complex calculations, operations, or tasks without blocking the main thread, which can enhance the responsiveness and performance of your web application.
 
 ```javascript
@@ -428,7 +475,7 @@ self.addEventListener('message', (event) => {
 });
 ```
 
-### 25. Can I have many threads?
+### 27. Can I have many threads?
 Yes. Just create as many Worker and listen to them.
 
 ```javascript
@@ -447,9 +494,61 @@ worker2.on('message', (message) => {
 });
 ```
 
-### 26. Prefer null over undefined
+### 28. Prefer null over undefined
 It is common to check for both undefined and null for error. I think setting things to null or initialize to null. Undefined is really something forgotten. If you find any undefined, you should go fix it.
 
-### 27. Offline manifest
+### 29. Accessing GPU (Part 1)
+There are various ways to use Javascript to access GPU. The most common scenario is via WebGL. The snippet below is to create a canvas and getting a WebGL surface to render. Here is good [sample webgl](https://github.com/mdn/dom-examples/tree/main/webgl-examples/tutorial/sample8) and here's the [demo](https://mdn.github.io/dom-examples/webgl-examples/tutorial/sample8/).
 
-### 28. Service Worker
+```javascript
+ <canvas id="glcanvas" width="640" height="480"></canvas>
+...
+const canvas = document.querySelector("#glcanvas");
+  // Initialize the GL context
+  const gl = canvas.getContext("webgl");
+
+  // Only continue if WebGL is available and working
+  if (gl !== null) {
+
+  }
+  ...
+```
+
+### 30. Accessing GPU (Part 2)
+You can use tensorflow.js and similar API for ML task. Though this is more specialized. For general purpose, we can access WebGPU from Javascript. Sample [here](https://mdn.github.io/dom-examples/webgpu-compute-demo/script.js). Just like any work sent to GPU, it is commonly done in a shader. Another GPGPU library is [gpu.js](https://gpu.rocks/#/).
+
+```javascript
+// Compute shader
+const shader = `
+@group(0) @binding(0)
+var<storage, read_write> output: array<f32>;
+
+@compute @workgroup_size(64)
+fn main(
+  @builtin(global_invocation_id)
+  global_id : vec3u,
+
+  @builtin(local_invocation_id)
+  local_id : vec3u,
+) {
+  // Avoid accessing the buffer out of bounds
+  if (global_id.x >= ${BUFFER_SIZE}u) {
+    return;
+  }
+
+  output[global_id.x] =
+    f32(global_id.x) * 1000. + f32(local_id.x);
+}
+`;
+```
+
+### 31. What are all the Javascript engine?
+- V8 - by far the most common Javascript engine. This is used in Chrome browser and Node.js runtime.
+- SpiderMonkey - this is Javascript engine from Mozilla / Firefox.
+- JavascriptCore - this one from Apple, used in Safari browser. Ever wonder why RN app is not consistant across Android & iOS? This is the reason.
+- Chakra - this one is from Microsoft.
+- MuJS / Duktape / Moddable XS / JerryScript - small embedded & iot devices.
+
+### 32. Offline manifest
+
+### 33. Service Worker
