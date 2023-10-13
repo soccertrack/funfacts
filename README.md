@@ -1,4 +1,4 @@
-# Random Javascript bits
+# r@nd0m javascript b1t5
 ```
  /\_/\  
 ( o.o ) 
