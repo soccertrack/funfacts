@@ -705,6 +705,20 @@ console.log('Sum:', sum);         // Outputs: Sum: 12345678901234567899999999999
 console.log('Product:', product); // Outputs: Product: 1219326311126352697579906220182235292041254607981000n
 ```
 
+### 41. Nullish Coalescing Operator (??) 
+?? is used to set default value if the variable is either null or undefined. Developers have been using || to set default value and that is different from ??. 
+- ?? will set default value if value is null or undefined
+- || will set default value if lhs is false. For eg. const defaultValue = '' || 'default'; // will always set to 'default'.
+
+```javascript
+const userInput = null; // This could be null or undefined
+
+// Using ?? to provide a default value
+const defaultValue = userInput ?? 'default';
+
+console.log(defaultValue); // Outputs: default
+```
+
 ### 38. Offline manifest
 
 ### 39. Service Worker
