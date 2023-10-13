@@ -549,6 +549,58 @@ fn main(
 - Chakra - this one is from Microsoft.
 - MuJS / Duktape / Moddable XS / JerryScript - small embedded & iot devices.
 
+### 32. Can Javascript leak memory?
+Yes.
+
+```javascript
+function outerFunction() {
+  const outer_data = new Array(999999).fill('xxxx xxxx');
+
+  function innerFunction() {
+    console.log(outer_data.slice(0, 1)); // using outer_data
+  }
+
+  return innerFunction;
+}
+
+let leakedClosure = outerFunction();
+```
+
+The above code will leak memory because innerFunction is holding to outer_data. To fix this, set leakedClosure to null.
+
+```javascript
+leakedClosure = null;
+```
+
+There are many other ways to leak memory in Javascript:
+- Circular reference (A -> B -> A)
+- Setting global variable to external like window object.
+- Any map / array in global will hold everything in memory.
+- Event handler as a closure.
+- Timer without clear timer.
+
+### 33. WeakMap / WeakSet
+WeakMap provides a way to create a collection of key-value pairs where the keys are weakly referenced. In other words, entries in a WeakMap do not prevent the keys from being garbage-collected when there are no other references to them.
+
+```javascript
+const weakMap = new WeakMap();
+
+// Create an object to use as a key
+const keyObject = {};
+
+// Add a key-value pair to the WeakMap
+weakMap.set(keyObject, 'Value associated with keyObject');
+
+// Retrieve the value associated with the keyObject
+console.log(weakMap.get(keyObject)); // Output: Value associated with keyObject
+
+// Remove the reference to the keyObject
+keyObject = null;
+
+// At this point, the keyObject is no longer needed, and it becomes eligible for garbage collection.
+// The associated entry in the WeakMap will also be removed automatically.
+```
+
 ### 32. Offline manifest
 
 ### 33. Service Worker
