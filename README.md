@@ -719,6 +719,14 @@ const defaultValue = userInput ?? 'default';
 console.log(defaultValue); // Outputs: default
 ```
 
+### 42. Optional Chaining (?.)
+Optional chaining has been around for many languages such as swift and typescript. Now, optional chaining is made first class in Javascript. This allows code to be more secure and get rid of error like 'length in not a property of undefined'.
+
+```javascript
+const userName = user?.propertyDoesNotExist?.fooBar(); // userName will be undefined but no error accessing them because of optional chaining.
+```
+
+
 ### 38. Offline manifest
 
 ### 39. Service Worker
