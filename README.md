@@ -402,5 +402,50 @@ await waitForMs(10000);            // wait for 10s but what happen here?
 console.log('promise completed');  // will print after 10s
 ```
 
+### 24. Using additional thread to do work
+You are right, Javascript engine is single threaded. The environment around Javascript such as Node.js or browser do support Web Worker API which allows you to create threads and have mechanism to communicate back to Javascript main thread. Web Workers allow you to perform complex calculations, operations, or tasks without blocking the main thread, which can enhance the responsiveness and performance of your web application.
+
+```javascript
+// Create a new Web Worker
+const worker = new Worker('worker.js');
+
+// Listen for messages from the Web Worker
+worker.addEventListener('message', (event) => {
+  console.log('Web Worker msg:', event.data);
+});
+
+// In worker.js ---------------------------------------
+
+// Listen for messages from the main thread
+self.addEventListener('message', (event) => {
+  console.log('Received message from main thread:', event.data);
+
+  // Perform some work
+  const result = event.data + ' Processed in Web Worker';
+
+  // Send the result back to the main thread
+  self.postMessage(result);
+});
+```
+
+### 25. Can I have many threads?
+Yes. Just create as many Worker and listen to them.
+
+```javascript
+
+// Create multiple worker threads
+const worker1 = new Worker('worker.js', { workerData: 'Worker 1' });
+const worker2 = new Worker('worker.js', { workerData: 'Worker 2' });
+
+// Listen for messages from the worker threads
+worker1.on('message', (message) => {
+  console.log('Received message from Worker 1:', message);
+});
+
+worker2.on('message', (message) => {
+  console.log('Received message from Worker 2:', message);
+});
+```
+
+
 offline manifest
-web worker
