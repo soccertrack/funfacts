@@ -610,6 +610,21 @@ const bufferFromByteArray = Buffer.from(byteArray);
 
 console.log('Buffer from byte array:', bufferFromByteArray);
 ```
+
+### 35. Javascript Binding for C++ library
+The way it has been is library developer write code in C++ and use tool like **node-gyp** build and bind into Node using addon API. This is changing. The modern way to do this is via WebAssembly [More info here](https://developer.mozilla.org/en-US/docs/WebAssembly). You can use any language (C/C++, C#, Python, Go, Rust, Java & Kotlin )to write wasm and create as a wasm module.
+
+```javascript
+// my-asm.js is created with 'emcc native_code.cpp -o my-asm.js'
+// Load the WebAssembly module
+const Module = require('./my-asm.js');
+
+Module.onRuntimeInitialized = function() {
+  console.log('WebAssembly module loaded');
+  console.log('Result:', Module.foobar());
+};
+```
+
 ### 32. Offline manifest
 
 ### 33. Service Worker
