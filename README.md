@@ -719,14 +719,45 @@ const defaultValue = userInput ?? 'default';
 console.log(defaultValue); // Outputs: default
 ```
 
-### 42. Optional Chaining (?.)
+### 42. Dynamic Import
+Dynamic import is a game changer. It is so good, I assign it as #42. Before this, import can load in modules for code maintenance, accessing libraries etc. Dynamic import can import module at runtime even in a branch (if). This means:
+- This can be use as lazy loading, code splitting.
+- Url can be external url. 
+- Performance gain, imagine putting modules where users rarely invoke into dynamic import.
+
+```javascript
+const moduleUrl = 'https://url.com/path/remote-module.js';
+
+import(moduleUrl)
+  .then((module) => {
+    // Module is now available for use
+    module.someFunction();
+  })
+  .catch((error) => {
+    console.error('Error loading module:', error);
+  });
+```
+
+### 43. Optional Chaining (?.)
 Optional chaining has been around for many languages such as swift and typescript. Now, optional chaining is made first class in Javascript. This allows code to be more secure and get rid of error like 'length in not a property of undefined'.
 
 ```javascript
-const userName = user?.propertyDoesNotExist?.fooBar(); // userName will be undefined but no error accessing them because of optional chaining.
+const userName = user?.propertyDoesNotExist?.fooBar(); // userName will be undefined but no error accessing
 ```
 
+### 44. Object.fromEntries
+Object.fromEntries will take in 2d matrix (format as key / value) and output Javascript object.
 
+```javascript
+const entries = [
+  ['name', 'Lenny'],
+  ['id', 123]
+];
+
+const obj = Object.fromEntries(entries);
+
+console.log(obj); // { name: 'Lenny', id: 123 }
+```
 ### 38. Offline manifest
 
 ### 39. Service Worker
