@@ -448,4 +448,6 @@ worker2.on('message', (message) => {
 ```
 
 
-offline manifest
+### 26. Offline manifest
+
+### 27. Service Worker
