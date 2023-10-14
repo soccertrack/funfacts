@@ -1121,6 +1121,52 @@ for (const [index, value] of arr.entries()) {
 }
 ```
 
+### 58. Stack using Array
+Array has built-in function `push` and `pop` which make it work like a `Stack (FIFO)`.
+
+```
+let stack = [];
+stack.push(1);         // [1]
+stack.push(2);         // [1,2]
+
+let val = stack.pop(); // [1]
+```
+
+### 59. Queue using Array
+Array has `shift` and `push` which can perform like `dequeue` and `enqueue`. To make it clearer, we can create a Queue class as follow:
+
+```javascript
+class Queue {
+  constructor() {
+    this.queue = [];
+  }
+
+  enqueue(item) {
+    this.queue.push(item);
+  }
+
+  dequeue() {
+    return this.queue.shift();
+  }
+
+  isEmpty() {
+    return this.queue.length === 0;
+  }
+
+  size() {
+    return this.queue.length;
+  }
+}
+
+// Usage
+const queue = new Queue();
+queue.enqueue(10);
+queue.enqueue(20);
+console.log(queue.dequeue()); // Output: 10
+console.log(queue.size());    // Output: 1
+
+```
+
 ```
   \o/
    |       We did it!
