@@ -5,7 +5,7 @@
  > ^ <
 ```
 ### 00. Javascript can do extension 
-An extension in programming is a mechanism that enables the augmentation of features in an existing class without making direct modifications to the original class. It's a method to enhance the behavior and abilities of types without the need for subclassing. With extensions, you can incorporate additional functionality into an object after the object has been initially created.
+An `extension` in programming is a mechanism that enables the augmentation of features in an existing class without making direct modifications to the original class. It's a method to enhance the behavior and abilities of types without the need for subclassing. With extensions, you can incorporate additional functionality into an object after the object has been initially created.
 
 ```javascript
 // class definition
@@ -47,7 +47,7 @@ function fooBar2() { console.log(`fooBar2`);}
 
 ### 02. Dot notation and Bracket notation can access/mutate property the same way
 
-In JavaScript, you have two primary methods to access and modify properties of an object: dot notation and bracket notation.
+In JavaScript, you have two primary methods to access and modify properties of an object: `dot notation` and `bracket notation`.
 
 Dot notation is straightforward and direct, suitable when the key is known in advance. It offers a slight performance advantage due to its directness. On the other hand, bracket notation provides more flexibility, allowing keys to be determined dynamically at runtime, making it the preferred choice in such cases.
 
@@ -63,7 +63,7 @@ console.log(person['something']);
 
 
 ### 03. Javascript call(...) function reverse the order of calling method
-In JavaScript, we can invoke a method using the call function, which allows us to call a method in the format function.call(obj, ...) instead of the usual obj.function(...). This approach opens up various scenarios like method borrowing and enables the implementation of inheritance in JavaScript.
+In JavaScript, we can invoke a method using the `call` function, which allows us to call a method in the format `function.call(obj, ...)` instead of the usual `obj.function(...)`. This approach opens up various scenarios like method borrowing and enables the implementation of inheritance in JavaScript.
 
 ```javascript
 function greet() {
@@ -77,7 +77,7 @@ greet.call(person);
 
 
 ### 04. Javascript call and apply are similar except ...
-The apply method in JavaScript is akin to the call method, with a notable difference: while call takes arguments individually, apply takes them in the form of an array. This makes it a valuable choice when you need to invoke a function with a defined context and a variable number of arguments supplied within an array-like structure. It enhances dynamism by allowing decisions to be made at runtime regarding the arguments being passed.
+The `apply` method in JavaScript is akin to the call method, with a notable difference: while call takes arguments individually, apply takes them in the form of an array. This makes it a valuable choice when you need to invoke a function with a defined context and a variable number of arguments supplied within an array-like structure. It enhances dynamism by allowing decisions to be made at runtime regarding the arguments being passed.
 
 ```javascript
 function greet(foo) {
@@ -96,7 +96,7 @@ greet.apply(person, ['foo']);
 
 
 ### 05. Javascript call and bind are similar except ...
-The call and bind function are similar. call will run the function, while bind will create the function reference for you to call at a later time.
+The `call` and `bind` function are similar. `call` will run the function, while `bind` will create the function reference for you to call at a later time.
 
 ```javascript
 function greet(foo) {
@@ -115,7 +115,7 @@ func();
 
 
 ### 06. Loose equity (==) vs Strict equity
-Loose equity (==) will attempt to convert before doing comparison, while strict equity (===) does not convert.
+Loose equity (`==`) will attempt to convert before doing comparison, while strict equity (`===`) does not convert.
 
 ```javascript
 // loose equity check
@@ -126,7 +126,7 @@ console.log(42 === '42');  // Outputs: false (different types)
 ```
 
 ### 07. Inheritance the older way via Prototype
-Prototype is a fundamental aspect of how objects and inheritance work in the language. Each JavaScript object has a prototype, which is another object that the current object inherits properties and methods from.
+`Prototype` is a fundamental aspect of how objects and inheritance work in the language. Each JavaScript object has a prototype, which is another object that the current object inherits properties and methods from.
 
 ```javascript
 // Superclass: Person
@@ -166,7 +166,7 @@ student1.showId();
 ```
 
 ### 08. Proper class inheritance in Javascript
-**extends** keyword is introduced in ES6.
+`extends` keyword is introduced in ES6.
 
 ```javascript
 class Person {
@@ -185,10 +185,10 @@ class Student extends Person {
 ```
 
 ### 09. Prototype Chain
-When you call a method or access a property of an object in JavaScript, if the method or property isn't directly present in the object, the interpreter will attempt to search for it in the object's prototype. If not found there, it continues this search along the parent's prototype chain. If the search yields no result, the return value will be **undefined**.
+When you call a method or access a property of an object in JavaScript, if the method or property isn't directly present in the object, the interpreter will attempt to search for it in the object's prototype. If not found there, it continues this search along the parent's `prototype chain`. If the search yields no result, the return value will be **undefined**.
 
 ### 10. Object deconstructing
-Object destructuring allows you to extract properties from an object and assign them to variables in a more concise and convenient way. The name has to match the property name and only need to do assignment on the properties you are interested.
+`Object destructuring` allows you to extract properties from an object and assign them to variables in a more concise and convenient way. The name has to match the property name and only need to do assignment on the properties you are interested.
 
 ```javascript
 const user = {
@@ -204,8 +204,8 @@ const { address: { city, postalCode } } = user;
 console.log(city);  
 ```
 
-### 11. Nobody should use *var*
-var is function scoped and can be re-declared many times without throwing any error. The code below looks like it should have compile error but it's ok thanks to var.
+### 11. Nobody should use `var`
+`var` is function scoped and can be re-declared many times without throwing any error. The code below looks like it should have compile error but it's ok thanks to var.
 
 ```javascript
 function foo() {
@@ -222,7 +222,7 @@ foo();
 ### 12. let or const
 In JavaScript, let and const are block-scoped variables. When using const, you must initialize the variable, and once assigned, you cannot change its value. On the other hand, with let, you can declare a variable without immediate initialization and later assign and reassign values to it.
 
-A good practice is to utilize const when you don't need to reassign the reference, promoting immutability. Conversely, opt for let when you need to reassign values during the program's execution.
+A good practice is to utilize `const` when you don't need to reassign the reference, promoting immutability. Conversely, opt for `let` when you need to reassign values during the program's execution.
 
 ```javascript
 function foo() {
@@ -238,7 +238,7 @@ function foo() {
 foo();
 ```
 ### 13. Object spreading ...
-Object spreading is a convenient and concise feature in JavaScript that enables rapid creation of shallow copies or merging of values within objects.
+`Object spreading ...` is a convenient and concise feature in JavaScript that enables rapid creation of shallow copies or merging of values within objects.
 
 ```javascript
 const obj = { a: 1, b: 2 };
@@ -282,7 +282,7 @@ console.log(flattened)                                      // returns 1, 2, 3, 
 
 
 ### 16. for loop vs forEach
-Considering that we have an array, is it better to use traditional for loop or modern high level forEach? It is better to use traditional for loop because of performance, more control and ability to terminate early.
+Considering that we have an array, is it better to use traditional `for loop` or modern high level `forEach`? It is better to use traditional for loop because of performance, more control and ability to terminate early.
 
 ```javascript
 const arr = [1,2,3,4,5];
@@ -299,9 +299,9 @@ for (const e of arr) { // more control structure with regular for loop.
 ```
 
 ### 17. Script to machine code
-JavaScript engines have the flexibility to execute programs using either bytecode (interpreted) or machine code (compiled). Typically, scripts are first converted into an Abstract Syntax Tree (AST), forming the basis for generating bytecode, which is efficient for interpretation.
+JavaScript engines have the flexibility to execute programs using either bytecode (interpreted) or machine code (compiled). Typically, scripts are first converted into an Abstract Syntax Tree (`AST`), forming the basis for generating `bytecode`, which is efficient for interpretation.
 
-During execution, the engine identifies hot segments or paths in the code. It optimizes these segments by compiling them into native machine code, enhancing performance significantly (this is TurboFan in V8 engine). However, this optimized code relies on specific assumptions, like the presence of certain properties. If these assumptions prove incorrect during execution, a process called de-optimization occurs. The engine discards the generated machine code and reverts to interpreted mode to maintain correctness.
+During execution, the engine identifies hot segments or paths in the code. It optimizes these segments by compiling them into `native machine code`, enhancing performance significantly (this is `TurboFan` in `V8 engine`). However, this optimized code relies on specific assumptions, like the presence of certain properties. If these assumptions prove incorrect during execution, a process called de-optimization occurs. The engine discards the generated machine code and reverts to interpreted mode to maintain correctness.
 
 ```mermaid
 graph TD;
@@ -311,7 +311,7 @@ graph TD;
 ```
 
 ### 18. {} vs Map for Dictionary functionality
-For a long time, JavaScript developers used {} as a makeshift dictionary due to the absence of native Map support. However, with the availability of Map (as shown in the code snippet), it's advisable to use Map consistently. The key advantage of Map lies in its underlying implementation as a hashmap, ensuring fast retrieval with O(1) complexity compared to the O(n) complexity of regular objects represented by {}. Additionally, Map maintains the order of insertion, providing a predictable structure.
+For a long time, JavaScript developers used `{}` as a makeshift dictionary due to the absence of native Map support. However, with the availability of `Map` (as shown in the code snippet), it's advisable to use Map consistently. The key advantage of Map lies in its underlying implementation as a hashmap, ensuring fast retrieval with O(1) complexity compared to the O(n) complexity of regular objects represented by {}. Additionally, Map maintains the order of insertion, providing a predictable structure.
 
 ```javascript
 const fakeMap = {
@@ -329,7 +329,7 @@ console.log(realMap.get('key1'));
 ```
 
 ### 19. Never ever compare with NaN
-The NaN value in JavaScript is of the type number. NaN is not equal to itself; hence, comparing NaN to anything, even itself, will result in false.
+The `NaN` value in JavaScript is of the type number. NaN is not equal to itself; hence, comparing NaN to anything, even itself, will result in false.
 
 ```javascript
 const a = NaN;
@@ -339,7 +339,7 @@ console.log(a === a)     // false, what ?!!
 ```
 
 ### 20. Trusting array.length can have side-effect
-The behavior of the length property in JavaScript can be somewhat peculiar. When we directly assign a value to an index, the length of the array becomes index+1. It's important to note that JavaScript doesn't pre-allocate memory for the entire array. This behavior can sometimes introduce subtle bugs that are challenging to debug, so caution is advised when working with arrays in this manner.
+The behavior of the `length` property in JavaScript can be somewhat peculiar. When we directly assign a value to an index, the length of the array becomes index+1. It's important to note that JavaScript doesn't pre-allocate memory for the entire array. This behavior can sometimes introduce subtle bugs that are challenging to debug, so caution is advised when working with arrays in this manner.
 
 ```javascript
 const a = [];
@@ -376,7 +376,7 @@ stateDiagram
 ```
 
 ### 22. Handling Promise that returned
-You can use then..catch pattern or async await pattern. Async await pattern makes the code to be more natural to understand as though it is linear & synchronous. Then .. catch pattern looks like callback and using closure. It's really a matter of preference but async await can do more complex stuffs.
+You can use `then..catch pattern` or `async await` pattern. Async await pattern makes the code to be more natural to understand as though it is linear & synchronous. Then .. catch pattern looks like callback and using closure. It's really a matter of preference but async await can do more complex stuffs.
 
 ```javascript
 // using then.catch pattern
@@ -399,7 +399,7 @@ async function calling() {
 }
 ```
 ### 23. Wait for All Promises
-You can use Promise.all(arrayOfPromises) to wait for all promise to resolve. If any promise reject, Promise.all will return immidietely and error. This is a good way to handle task synchronzation.
+You can use `Promise.all(arrayOfPromises)` to wait for all promise to resolve. If any promise reject, Promise.all will return immidietely and error. This is a good way to handle task synchronzation.
 
 ```javascript
 const promise1 = Promise.resolve('Resolved Promise A');
@@ -426,7 +426,7 @@ Promise.all([promise1, promise2])
 ```
 
 ### 24. Wait for first promise to resolve.
-There are use cases where we want to get the first promise that resolve, exit and not worry about the other promises.
+`Promise.race(..)`.There are use cases where we want to get the first promise that resolve, exit and not worry about the other promises.
 
 ```javascript
 const promises = [
@@ -442,7 +442,7 @@ Promise.race(promises)
 
 ### 25. What happen when we await Promise(), how does javascript resume.
 Javascript is single threaded. When awaiting a promise, Javascript won't run the next line until promise is fulfilled.
-When encountering an await statement:
+When encountering an `await` statement:
 
 - JavaScript engine registers a continuation to be executed once the awaited Promise settles.
 - Once the Promise settles, the registered continuation is added to the Javascript task queue.
@@ -456,7 +456,7 @@ console.log('promise completed');  // will print after 10s
 ```
 
 ### 26. Using additional thread to do work
-Indeed, the JavaScript engine operates in a single-threaded environment. However, the broader JavaScript ecosystem, encompassing environments like Node.js and browsers, supports the Web Worker API. Web Workers enable the creation of threads and establish mechanisms for communication back to the JavaScript main thread. This capability empowers developers to execute intricate calculations, operations, or tasks without hindering the main thread, thereby optimizing the responsiveness and performance of web applications.
+Indeed, the JavaScript engine operates in a single-threaded environment. However, the broader JavaScript ecosystem, encompassing environments like Node.js and browsers, supports the `Web Worker` API. Web Workers enable the creation of threads and establish mechanisms for communication back to the JavaScript main thread. This capability empowers developers to execute intricate calculations, operations, or tasks without hindering the main thread, thereby optimizing the responsiveness and performance of web applications.
 
 ```javascript
 // Create a new Web Worker
@@ -482,7 +482,7 @@ self.addEventListener('message', (event) => {
 ```
 
 ### 27. Can I have many threads?
-Yes. Just create as many Worker object and listen to them.
+Yes. Just create as many `Worker` object and listen to them.
 
 ```javascript
 
@@ -501,10 +501,10 @@ worker2.on('message', (message) => {
 ```
 
 ### 28. Prefer null over undefined
-It is common to check for both undefined and null for error. I think setting things to null or initialize to null. Undefined is really something forgotten. If you find any undefined, you should go fix it.
+It is common to check for both undefined and null for error. I think setting things to null or initialize to null. Undefined is really something forgotten. If you find any `undefined`, you should go fix it.
 
 ### 29. Accessing GPU (Part 1)
-There are various ways to use Javascript to access GPU. The most common scenario is via WebGL. The snippet below is to create a canvas and getting a WebGL surface to render. Here is good [sample webgl](https://github.com/mdn/dom-examples/tree/main/webgl-examples/tutorial/sample8) and here's the [demo](https://mdn.github.io/dom-examples/webgl-examples/tutorial/sample8/).
+There are various ways to use Javascript to access GPU. The most common scenario is via `WebGL`. The snippet below is to create a canvas and getting a WebGL surface to render. Here is good [sample webgl](https://github.com/mdn/dom-examples/tree/main/webgl-examples/tutorial/sample8) and here's the [demo](https://mdn.github.io/dom-examples/webgl-examples/tutorial/sample8/).
 
 ```javascript
  <canvas id="glcanvas" width="640" height="480"></canvas>
@@ -521,7 +521,7 @@ const canvas = document.querySelector("#glcanvas");
 ```
 
 ### 30. Accessing GPU (Part 2)
-TensorFlow.js and similar APIs are specialized tools often used for machine learning (ML) tasks. Though this is more specialized. For general purpose, we can use WebGPU feature from Javascript. Sample [here](https://mdn.github.io/dom-examples/webgpu-compute-demo/script.js). Just like any work sent to GPU, it is commonly done in a shader. Another GPGPU library is [gpu.js](https://gpu.rocks/#/).
+`TensorFlow.js` and similar APIs are specialized tools often used for machine learning (ML) tasks. Though this is more specialized. For general purpose, we can use `WebGPU` feature from Javascript. Sample [here](https://mdn.github.io/dom-examples/webgpu-compute-demo/script.js). Just like any work sent to GPU, it is commonly done in a shader. Another GPGPU library is [gpu.js](https://gpu.rocks/#/).
 
 ```javascript
 // Compute shader
@@ -549,11 +549,11 @@ fn main(
 ```
 
 ### 31. What are all the Javascript engine?
-- V8 - by far the most common Javascript engine. This is used in Chrome browser and Node.js runtime.
-- SpiderMonkey - this is Javascript engine from Mozilla / Firefox.
-- JavascriptCore - this one from Apple, used in Safari browser. Ever wonder why RN app is not consistant across Android & iOS? This is the reason.
-- Chakra - this one is from Microsoft.
-- MuJS / Duktape / Moddable XS / JerryScript - small embedded & iot devices.
+- `V8` - by far the most common Javascript engine. This is used in Chrome browser and Node.js runtime.
+- `SpiderMonkey` - this is Javascript engine from Mozilla / Firefox.
+- `JavascriptCore` - this one from Apple, used in Safari browser. Ever wonder why RN app is not consistant across Android & iOS? This is the reason.
+- `Chakra` - this one is from Microsoft.
+- `MuJS / Duktape / Moddable XS / JerryScript` - small embedded & iot devices.
 
 ### 32. Can Javascript leak memory?
 Yes.
@@ -587,7 +587,7 @@ There are several ways memory can unintentionally be retained in JavaScript:
 - Timers not properly cleared.
 
 ### 33. WeakMap / WeakSet
-The WeakMap in JavaScript offers a means to establish a collection of key-value pairs, where the keys are held via weak references. Essentially, entries in a WeakMap do not hinder the keys from being garbage-collected if there are no other references to them.
+The `WeakMap` in JavaScript offers a means to establish a collection of key-value pairs, where the keys are held via weak references. Essentially, entries in a WeakMap do not hinder the keys from being garbage-collected if there are no other references to them.
 
 ```javascript
 const weakMap = new WeakMap();
@@ -609,7 +609,7 @@ keyObject = null;
 ```
 
 ### 34. Can Javascript handle binary?
-Yes, Javascript can handle binary. Mainly using **Buffer** class. See examples below"
+Yes, Javascript can handle binary. Mainly using `Buffer` class. See examples below"
 
 ```javascript
 const byteArray = [0x48, 0x65, 0x6C, 0x6C, 0x6F]; // ASCII codes for 'Hello'
@@ -621,7 +621,7 @@ console.log('Buffer from byte array:', bufferFromByteArray);
 ### 35. Javascript Binding for C++ library
 
 
-Traditionally, library developers wrote code in C++ and utilized tools like node-gyp to build and bind the code into Node.js using addon APIs. However, the landscape is evolving. A contemporary approach involves leveraging WebAssembly, as detailed [More info here](https://developer.mozilla.org/en-US/docs/WebAssembly). With WebAssembly, you're no longer confined to a specific language; you can use a variety of languages such as C/C++, C#, Python, Go, Rust, Java, and Kotlin to write code and compile it into a WebAssembly module.
+Traditionally, library developers wrote code in C++ and utilized tools like `node-gyp` to build and bind the code into Node.js using addon APIs. However, the landscape is evolving. A contemporary approach involves leveraging `WebAssembly`, as detailed [More info here](https://developer.mozilla.org/en-US/docs/WebAssembly). With WebAssembly, you're no longer confined to a specific language; you can use a variety of languages such as C/C++, C#, Python, Go, Rust, Java, and Kotlin to write code and compile it into a WebAssembly module.
 
 ```javascript
 // my-asm.js is created with 'emcc native_code.cpp -o my-asm.js'
@@ -635,7 +635,7 @@ Module.onRuntimeInitialized = function() {
 ```
 
 ### 36. What is Javascript bridge
-A JavaScript bridge acts as a crucial mechanism, enabling bidirectional communication between JavaScript code (typically residing in a webview) and its host environment, whether it's iOS native, Android native, or Flutter. This functionality is pervasive in mobile development, particularly when integrating a webview within applications.
+A `JavaScript bridge` acts as a crucial mechanism, enabling bidirectional communication between JavaScript code (typically residing in a webview) and its host environment, whether it's iOS native, Android native, or Flutter. This functionality is pervasive in mobile development, particularly when integrating a webview within applications.
 
 ```javascript
 // iOS
@@ -650,7 +650,7 @@ function sendMessageToFlutter() {
 ```
 
 ### 37. 'this' reference in Javascript
-'this' in Javascript is referring to context and scope. Let's illustrate with code:
+`this` in Javascript is referring to context and scope. Let's illustrate with code:
 
 ```javascript
 // use1: adding property / method
@@ -681,7 +681,7 @@ button.addEventListener('click', function() {
 This is good to know but it really doesn't matter to me. I think it depends on your codebase. Just be consistent with it.
 
 ### 39. SharedArrayBuffer
-In the context of data transfer between web workers and the main thread, there's typically a need to serialize, deserialize, and make copies of the data, which can be highly inefficient, especially in scenarios related to machine learning. However, the introduction of SharedArrayBuffer has addressed this inefficiency by enabling the sharing of a buffer across different execution contexts.
+In the context of data transfer between web workers and the main thread, there's typically a need to serialize, deserialize, and make copies of the data, which can be highly inefficient, especially in scenarios related to machine learning. However, the introduction of `SharedArrayBuffer` has addressed this inefficiency by enabling the sharing of a buffer across different execution contexts.
 
 ```javascript
 const buffer = new SharedArrayBuffer(16);
@@ -701,7 +701,7 @@ onmessage = (event) => {
 ```
 
 ### 40. XXXL number. BigInt
-Javascript now support BigInt which can go larger than 2^53 - 1 (limit for number).
+Javascript now support `BigInt` which can go larger than 2^53 - 1 (limit for number).
 
 ```javascript
 const bigIntA = 1234567890123456789012345678901234567890n;
@@ -715,10 +715,10 @@ console.log('Product:', product); // Outputs: Product: 1219326311126352697579906
 ```
 
 ### 41. Nullish Coalescing Operator (??) 
-The '??' operator, also known as the nullish coalescing operator, serves to assign a default value if a variable is either null or undefined. This is distinct from the '||' operator, which developers have historically used to set default values. Here's a breakdown of the differences:
+The `??` operator, also known as the nullish coalescing operator, serves to assign a default value if a variable is either null or undefined. This is distinct from the `||` operator, which developers have historically used to set default values. Here's a breakdown of the differences:
 
-- '??' sets the default value if the variable is null or undefined.
-- '||' sets the default value if the left-hand side (lhs) is evaluated as false. For example, const defaultValue = '' || 'default'; will always be set to 'default' unless the left-hand side is a truthy value other than an empty string.
+- `??` sets the default value if the variable is null or undefined.
+- `||` sets the default value if the left-hand side (lhs) is evaluated as false. For example, const defaultValue = '' || 'default'; will always be set to 'default' unless the left-hand side is a truthy value other than an empty string.
 
 ```javascript
 const userInput = null; // This could be null or undefined
@@ -730,7 +730,7 @@ console.log(defaultValue); // Outputs: default
 ```
 
 ### 42. Dynamic Import
-Dynamic import is a transformative addition to JavaScript. Unlike the traditional static import, which loads modules at compile-time, dynamic import allows for on-demand module loading during runtime, even within conditional branches. This has far-reaching implications:
+`Dynamic import` is a transformative addition to JavaScript. Unlike the traditional static import, which loads modules at compile-time, dynamic import allows for on-demand module loading during runtime, even within conditional branches. This has far-reaching implications:
 
 - Facilitates lazy loading and code splitting, enhancing performance.
 - Permits importing from external URLs.
@@ -750,14 +750,14 @@ import(moduleUrl)
 ```
 
 ### 43. Optional Chaining (?.)
-Optional chaining, a feature prevalent in languages like Swift and TypeScript, has become a first-class citizen in JavaScript. This enhancement significantly enhances code robustness by eliminating errors such as 'length is not a property of undefined'.
+`Optional chaining`, a feature prevalent in languages like Swift and TypeScript, has become a first-class citizen in JavaScript. This enhancement significantly enhances code robustness by eliminating errors such as 'length is not a property of undefined'.
 
 ```javascript
 const userName = user?.propertyDoesNotExist?.fooBar(); // userName will be undefined but no error accessing
 ```
 
 ### 44. Object.fromEntries
-The Object.fromEntries method processes a 2D matrix formatted as key-value pairs and transforms it into a JavaScript object. The reverse of this function is Object.entries(o).
+The `Object.fromEntries` method processes a 2D matrix formatted as key-value pairs and transforms it into a JavaScript object. The reverse of this function is `Object.entries(o)`.
 
 ```javascript
 const entries = [
@@ -779,7 +779,7 @@ console.log(entries);
 ```
 
 ### 45. Object.values and Object.keys
-Object.values and Object.keys are two useful functions provided by JavaScript to work with objects. This can be useful to build dynamic applications.
+`Object.values` and `Object.keys` are two useful functions provided by JavaScript to work with objects. This can be useful to build dynamic applications.
 
 ```javascript
 const person = { name: 'Kenny', id: 33 };
@@ -792,7 +792,7 @@ console.log(keys);    // Output: ['name', 'id']
 ```
 
 ### 46. Atomics features
-JavaScript Atomics is a recent feature in JavaScript, resembling C11's stdatomic.h API. Atomics provides a set of APIs that ensure synchronization with SharedArrayBuffer. It's designed for environments with multiple threads, like Web Workers, enabling the use of shared resources while maintaining synchronization. The APIs:
+JavaScript `Atomics` is a recent feature in JavaScript, resembling C11's stdatomic.h API. Atomics provides a set of APIs that ensure synchronization with `SharedArrayBuffer`. It's designed for environments with multiple threads, like Web Workers, enabling the use of shared resources while maintaining synchronization. The APIs:
 
 - Atomics.add(typedArray, index, value)
 - Atomics.sub(typedArray, index, value)
@@ -822,7 +822,7 @@ Atomics.store(sharedArray, 0, newValue);
 ```
 
 ### 47. setTimeout zero 
-setTimeout with 0ms doesn't mean it will run right away. This is a trick to dispatch task to the end of the Javascript message queue. You can also use this technique to yield to break long running job to smaller chunks.
+`setTimeout` with 0ms doesn't mean it will run right away. This is a trick to dispatch task to the end of the Javascript message queue. You can also use this technique to yield to break long running job to smaller chunks. Using `requestAnimationFrame` or `Promise.resolve().then(() => {})` can achieve the same result.
 
 ```javascript
 setTimeout(() => {
@@ -840,7 +840,7 @@ console.log("done");
 ```
 
 ### 48. Service Worker
-Although service worker is not a Javascript feature, it is very common to use them in any chrome project such as web pages, single page application & chrome extensions. A service worker is a type of web worker, a script that runs in the background of a web application, separate from the main browser thread. It acts as a programmable proxy, allowing control over network requests, caching, and push notifications for web applications. Service workers enable the creation of powerful features like offline support, background synchronization, and improved performance.
+Although `service worker` is not a Javascript feature, it is very common to use them in any chrome project such as web pages, single page application & chrome extensions. A service worker is a type of web worker, a script that runs in the background of a web application, separate from the main browser thread. It acts as a programmable proxy, allowing control over network requests, caching, and push notifications for web applications. Service workers enable the creation of powerful features like offline support, background synchronization, and improved performance.
 ```javascript
 // Register the service worker
 if ('serviceWorker' in navigator) {
@@ -876,7 +876,7 @@ self.addEventListener('fetch', event => {
 });
 ```
 ### 49. PostMessage
-The postMessage API serves as a crucial communication mechanism that facilitates interaction between various components in web development, including Service Workers, the main page, other frames, different windows, and even Chrome extensions. This communication is bidirectional, allowing for seamless exchange of data and messages between these components, enhancing the overall functionality and capabilities of the web application.
+The `postMessage` API serves as a crucial communication mechanism that facilitates interaction between various components in web development, including Service Workers, the main page, other frames, different windows, and even Chrome extensions. This communication is bidirectional, allowing for seamless exchange of data and messages between these components, enhancing the overall functionality and capabilities of the web application.
 
 ```javascript
 const targetWindow = window.parent; 
@@ -892,7 +892,7 @@ window.addEventListener('message', event => {
 ```
 
 ### 50. CustomEvent
-If you felt that PostMessage is an overkill & your requirement is within the same application, you should look at CustomEvent. You can send this event to any DOM element and receiver can control bubbling and cancel.
+If you felt that `PostMessage` is overkill & your requirement is within the same application, you should look at `CustomEvent`. You can send this event to any DOM element and receiver can control bubbling and cancel.
 
 ```javascript
 const customEvent = new CustomEvent('customEvent', {
