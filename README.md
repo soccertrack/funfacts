@@ -1074,6 +1074,23 @@ socket.addEventListener('error', (event) => {
 });
 ```
 
+### 56. Asyncronous Iteration
+Asynchronous iteration, introduced in ES2018, is a powerful feature that allows developers to work with asynchronous data sources in a streamlined and efficient manner. It's particularly useful in scenarios where you need to iterate over collections or data streams that involve asynchronous operations. 
+
+```javascript
+async function* asyncGenerator() {
+  yield 'a';
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  yield 'b';
+}
+
+(async () => {
+  for await (const item of asyncGenerator()) {
+    console.log(item);
+  }
+})();
+```
+
 ```
   \o/
    |       We did it!
