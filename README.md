@@ -1090,6 +1090,36 @@ async function* asyncGenerator() {
   }
 })();
 ```
+### 57.Iterate an array
+The many ways to iterate through an array.
+
+```javascript
+const arr = [1, 2, 3, 4];
+
+// regular for
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+// for..of
+for (const element of arr) {
+  console.log(element);
+}
+
+// arr.forEach
+arr.forEach(element => {
+  console.log(element);
+});
+
+// arr.map
+const newArray = arr.map(element => element * 3);
+console.log(newArray);
+
+// for..of entries
+for (const [index, value] of arr.entries()) {
+  console.log(index, value);
+}
+```
 
 ```
   \o/
