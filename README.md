@@ -923,3 +923,60 @@ document.addEventListener('customEvent', event => {
 });
 
 ```
+
+### 51. JSON reviver
+`JSON.parse` and `JSON.stringify` are commonly used API in Javascript when dealing with data. In `JSON.parse`, you can optionally pass in a `reviver function` which can be a transformer function. Note that JSON.parse will still need to complete because passing into reviver function so it is **not** a streaming API. Sample here:
+
+```javascript
+const jsonString = '{"date": "2023-10-14T08:30:00.000Z", "amount": "100", "child" : { "name": "", "value": "" }}';
+
+const reviver = (key, value) => {
+  if (key === 'date') {
+    return new Date(value);
+  } else if (key === 'amount') {
+    return parseFloat(value);
+  } else {
+    return undefined;
+  }
+  return value;
+};
+
+const o = JSON.parse(jsonString, reviver);
+// o.date   -> [Date object]
+// o.amount -> 100.0
+// o.child  -> don't exist
+
+```
+
+### 52. ReadableStream & WritableStream
+This is part of Javascript streams API [more info](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). The Streams API (ES2018) allows JavaScript to programmatically access streams of data received over the network and process them as desired by the developer. The benefit when done right is that you can get chunks of data as it is coming in and able to time slice and process bits earlier instead of waiting for all data to come in (synchronously) and then process.
+
+Code sample:
+```javascript
+async function handleStream() {
+const response = await fetch('https://jsonplaceholder.typicode.com/posts', { method: 'GET' });
+
+if (!response.ok) {
+  throw new Error('Network response was not ok');
+}
+
+const reader = response.body.getReader();
+
+while (true) {
+  const { done, value } = await reader.read();
+
+  if (done) {
+    console.log('Stream complete');
+    break;
+  }
+
+  // Process the chunk of data (value)
+  console.log('Received chunk:', new TextDecoder().decode(value));
+}
+}
+
+handleStream().catch(error => console.error('Error:', error));
+```
+
+### 53. Event Source
+
