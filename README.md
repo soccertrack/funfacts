@@ -1166,6 +1166,18 @@ console.log(queue.dequeue()); // Output: 10
 console.log(queue.size());    // Output: 1
 
 ```
+### 60. Typed Array
+Regular Javascript Array is storing as object. There are Typed Array introduced in Javascript to handle binary. Typed Arrays in JavaScript provide a way to work with raw binary data in a structured and efficient manner. They are array-like objects that represent arrays of specific numeric data types, allowing you to deal with low-level binary data directly. Here are the Typed Array available:
+
+- Int8Array
+- Uint8Array
+- Uint8ClampedArray
+- Int16Array
+- Uint16Array
+- Int32Array
+- Uint32Array
+- Float32Array
+- Float64Array
 
 ```
   \o/
