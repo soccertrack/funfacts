@@ -1265,6 +1265,24 @@ fetch('https://<url>/binaryreturn', { method: 'GET' })
   })
 ```
 
+### 66. AbortController & AbortSignal
+Using `AbortController` and `AbortSignal`, you can abort/cancel operation. You can use it to abort a running promise operation or in this example, cancelling a fetch call.
+
+```javascript
+const controller = new AbortController();
+const signal = controller.signal;
+
+setTimeout(() => {
+  controller.abort();
+  console.log('Request aborted');
+}, 5000);
+
+fetch(url, { signal })
+  .then(response => response.json())
+  .then(data => console.log('Response:', data))
+  .catch(error => console.error('Error:', error));
+```
+
 ```
   \o/
    |       We did it!
