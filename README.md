@@ -875,3 +875,38 @@ self.addEventListener('fetch', event => {
   );
 });
 ```
+### 49. PostMessage
+The postMessage API serves as a crucial communication mechanism that facilitates interaction between various components in web development, including Service Workers, the main page, other frames, different windows, and even Chrome extensions. This communication is bidirectional, allowing for seamless exchange of data and messages between these components, enhancing the overall functionality and capabilities of the web application.
+
+```javascript
+const targetWindow = window.parent; 
+const message = 'this is a message!';
+
+// Sending a message to the target window or frame
+targetWindow.postMessage(message, '*');
+
+// parent window (receiving)
+window.addEventListener('message', event => {
+    console.log('Received message:', event.data);
+});
+```
+
+### 50. CustomEvent
+If you felt that PostMessage is an overkill & your requirement is within the same application, you should look at CustomEvent. You can send this event to any DOM element and receiver can control bubbling and cancel.
+
+```javascript
+const customEvent = new CustomEvent('customEvent', {
+  detail: { message: 'This is a custom event.' },
+  bubbles: true,
+  cancelable: false
+});
+
+// send custom event to a DOM element
+document.dispatchEvent(customEvent);
+
+// Add an event listener to handle the custom event
+document.addEventListener('customEvent', event => {
+  console.log('Custom event received:', event.detail.message);
+});
+
+```
