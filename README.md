@@ -455,6 +455,14 @@ await waitForMs(10000);            // wait for 10s but what happen here?
 console.log('promise completed');  // will print after 10s
 ```
 
+```
+  A A   ~~~~~~~~~~~~~~~~~~~
+ (' ') < yawn! take a break
+(( ))   ~~~~~~~~~~~~~~~~~~~
+(( ))
+"" ""
+```
+
 ### 26. Using additional thread to do work
 Indeed, the JavaScript engine operates in a single-threaded environment. However, the broader JavaScript ecosystem, encompassing environments like Node.js and browsers, supports the `Web Worker` API. Web Workers enable the creation of threads and establish mechanisms for communication back to the JavaScript main thread. This capability empowers developers to execute intricate calculations, operations, or tasks without hindering the main thread, thereby optimizing the responsiveness and performance of web applications.
 
@@ -978,5 +986,41 @@ while (true) {
 handleStream().catch(error => console.error('Error:', error));
 ```
 
-### 53. Event Source
+### 53. EventSource (SSE)
+The `EventSource` API provides a straightforward and efficient way to receive real-time updates from a server through a single HTTP or HTTPS connection. The connection is initiated by a single request and remains open, allowing the server to send multiple response streams to the client, which are then closed after each event. The server-sent events (SSE) endpoint on the server must be set up to send events in a specific format, usually utilizing the text/event-stream content type.
 
+Compared to receiving a single block of updates all at once from a single endpoint API, EventSource allows for a faster, more progressive and responsive update delivery to the client. This results in a smoother flow of updates and a better user experience. While it's possible to achieve similar functionality by making multiple HTTP calls from the client, utilizing EventSource reduces resource usage on both the client and server sides, making it an efficient choice for real-time updates.
+
+Sample client code:
+```javascript
+const eventSource = new EventSource('https://<your-url>/sse');
+
+eventSource.addEventListener('message', (event) => {
+  console.log('Received message:', event.data);
+});
+
+eventSource.addEventListener('error', (event) => {
+  console.error('EventSource error:', event);
+});
+```
+
+```mermaid
+sequenceDiagram
+  Client->>Server: Open SSE Connection
+  Server->>Client: HTTP 200 OK (SSE connection established)
+
+  loop Event stream
+    Server->>Client: Event 1
+    Server->>Client: Event 2
+    Server->>Client: Event N
+  end
+
+  Client->>Server: Close SSE Connection
+  Server->>Client: HTTP 204 No Content (SSE connection closed)
+```
+
+```
+  \o/
+   |       We did it!
+  / \
+```
