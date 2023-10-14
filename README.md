@@ -757,7 +757,7 @@ const userName = user?.propertyDoesNotExist?.fooBar(); // userName will be undef
 ```
 
 ### 44. Object.fromEntries
-The Object.fromEntries method processes a 2D matrix formatted as key-value pairs and transforms it into a JavaScript object.
+The Object.fromEntries method processes a 2D matrix formatted as key-value pairs and transforms it into a JavaScript object. The reverse of this function is Object.entries(o).
 
 ```javascript
 const entries = [
@@ -768,9 +768,30 @@ const entries = [
 const obj = Object.fromEntries(entries);
 
 console.log(obj); // { name: 'Lenny', id: 123 }
+
+// reversing
+
+const obj = { a: 1, b: 2, c: 3 };
+const entries = Object.entries(obj);
+
+console.log(entries);
+// Output: [['a', 1], ['b', 2], ['c', 3]]
 ```
 
-### 45. Atomics features
+### 45. Object.values and Object.keys
+Object.values and Object.keys are two useful functions provided by JavaScript to work with objects. This can be useful to build dynamic applications.
+
+```javascript
+const person = { name: 'Kenny', id: 33 };
+
+const values = Object.values(person);
+console.log(values);  // Output: ['Kenny', 33]
+
+const keys = Object.keys(person);
+console.log(keys);    // Output: ['name', 'id']
+```
+
+### 46. Atomics features
 JavaScript Atomics is a recent feature in JavaScript, resembling C11's stdatomic.h API. Atomics provides a set of APIs that ensure synchronization with SharedArrayBuffer. It's designed for environments with multiple threads, like Web Workers, enabling the use of shared resources while maintaining synchronization. The APIs:
 
 - Atomics.add(typedArray, index, value)
