@@ -821,6 +821,57 @@ const newValue = 55;
 Atomics.store(sharedArray, 0, newValue);
 ```
 
-### 38. Offline manifest
+### 47. setTimeout zero 
+setTimeout with 0ms doesn't mean it will run right away. This is a trick to dispatch task to the end of the Javascript message queue. You can also use this technique to yield to break long running job to smaller chunks.
 
-### 39. Service Worker
+```javascript
+setTimeout(() => {
+    console.log("task 1");
+  }, 0);
+setTimeout(() => {
+    console.log("task 2");
+  }, 0);
+console.log("done");
+
+// will output :
+// done
+// task1
+// task2
+```
+
+### 48. Service Worker
+Although service worker is not a Javascript feature, it is very common to use them in any chrome project such as web pages, single page application & chrome extensions. A service worker is a type of web worker, a script that runs in the background of a web application, separate from the main browser thread. It acts as a programmable proxy, allowing control over network requests, caching, and push notifications for web applications. Service workers enable the creation of powerful features like offline support, background synchronization, and improved performance.
+```javascript
+// Register the service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch(error => {
+      console.error('Service Worker registration failed:', error);
+    });
+}
+
+// Service worker script (service-worker.js)
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('my-cache').then(cache => {
+      return cache.addAll([
+        '/',
+        '/index.html',
+        '/styles.css',
+        '/script.js'
+      ]);
+    })
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
+```
