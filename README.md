@@ -556,6 +556,14 @@ fn main(
 `;
 ```
 
+```
+           __n__n__
+    .------`-\00/-' 
+   /  ##  ## (oo)    < SERIOUSLY? WHEN DO I EVER NEED TO USE GPU !!
+  / \## __   ./
+     |//YY \|/
+snd  |||   |||
+```
 ### 31. What are all the Javascript engine?
 - `V8` - by far the most common Javascript engine. This is used in Chrome browser and Node.js runtime.
 - `SpiderMonkey` - this is Javascript engine from Mozilla / Firefox.
@@ -1021,6 +1029,14 @@ while (true) {
 }
 
 handleStream().catch(error => console.error('Error:', error));
+```
+
+```
+
+ (\(\ 
+ ( -.-)     < TOO MUCH INFO
+ o_(")(")
+
 ```
 
 ### 54. EventSource (SSE)
