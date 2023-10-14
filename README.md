@@ -279,7 +279,7 @@ const flattened = arr.flatMap(num => num);
 console.log(flattened)                                      // returns 1, 2, 3, 4, 5. flatten hierarchy.
 
 ```
-
+Higher-order functions are a powerful feature in functional programming, enabling concepts like callbacks, event handling, middleware in web frameworks, and more. They provide flexibility and allow for dynamic behavior based on the functions passed as arguments.
 
 ### 16. for loop vs forEach
 Considering that we have an array, is it better to use traditional `for loop` or modern high level `forEach`? It is better to use traditional for loop because of performance, more control and ability to terminate early.
