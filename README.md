@@ -375,6 +375,14 @@ stateDiagram
     Rejected --> [*] : Transition to pending
 ```
 
+```
+  A A   ~~~~~~~~~~~~~~~~~~~
+ (' ') < yawn! take a break
+(( ))   ~~~~~~~~~~~~~~~~~~~
+(( ))
+"" ""
+```
+
 ### 22. Handling Promise that returned
 You can use `then..catch pattern` or `async await` pattern. Async await pattern makes the code to be more natural to understand as though it is linear & synchronous. Then .. catch pattern looks like callback and using closure. It's really a matter of preference but async await can do more complex stuffs.
 
@@ -453,14 +461,6 @@ When encountering an `await` statement:
 console.log('calling await');
 await waitForMs(10000);            // wait for 10s but what happen here?
 console.log('promise completed');  // will print after 10s
-```
-
-```
-  A A   ~~~~~~~~~~~~~~~~~~~
- (' ') < yawn! take a break
-(( ))   ~~~~~~~~~~~~~~~~~~~
-(( ))
-"" ""
 ```
 
 ### 26. Using additional thread to do work
@@ -755,6 +755,12 @@ import(moduleUrl)
   .catch((error) => {
     console.error('Error loading module:', error);
   });
+```
+
+```
+           _
+       .__(.)< (TAKE ANOTHER BREAK)
+        \___)
 ```
 
 ### 43. Optional Chaining (?.)
@@ -1178,6 +1184,86 @@ Regular Javascript Array is storing as object. There are Typed Array introduced 
 - Uint32Array
 - Float32Array
 - Float64Array
+
+### 61. How do you put shape into SharedArrayBuffer?
+You can use any of the Typed array to shape your shared array buffer.
+
+```javascript
+const buffer = new SharedArrayBuffer(16); // Allocate a buffer of 16 bytes
+const intArray = new Int32Array(buffer);  // Create an Int32Array backed by the buffer
+
+// Set values in the IntArray
+intArray[0] = 42;
+intArray[1] = 10;
+```
+
+### 62. escape vs encodeURIComponent
+In earlier day of Javascript, `escape` and `unescape` were widely used for URI encoding. However, `escape` does not comply with ECMA standard and can output inconsistent result. `encodeURIComponent` and `decodeURIComponent` is the way to do URI encoding and decoding.
+
+```javascript
+const originalString = 'Hello World!';
+const encodedEscape = escape(originalString);
+const encodedURIComponent = encodeURIComponent(originalString);
+
+console.log('escape():', encodedEscape); // May output: "Hello%20World!" or "Hello+World!"
+console.log('encodeURIComponent():', encodedURIComponent); // Output: "Hello%20World!"
+```
+
+### 63. Base64 handling
+Base64 encoding uses a specific set of 64 characters to represent binary data as a sequence of printable ASCII characters. Javascript application use Base64 in:
+
+- Passing data as part of URL
+- Image encoding in Base64 `data:image/png;base64`
+- Sending binary data over text protocol
+- Storing blob in JSON
+- Auth JWT token.
+
+```javascript
+const dataToEncode = 'Hello, world!';
+const encodedData = btoa(dataToEncode);
+console.log(encodedData) // SGVsbG8sIHdvcmxkIQ==
+
+const decodedData = atob(encodedData);
+console.log(encodedData) // Hello, world!
+```
+
+### 64. TextEncoder & TextDecoder
+Use TextEncoder & TextDecoder to convert between String and Byte array (based on your encoding). Sample code:
+
+```javascript
+const encoder = new TextEncoder();
+const decoder = new TextDecoder('utf-8'); // can be other encoding
+
+const text = 'Lenny Kim';
+const encodedData = encoder.encode(text);
+// Uint8Array(9) [
+//   76, 101, 110, 110,
+//  121,  32,  75, 105, 109 ]
+console.log(encodedData);
+
+// Decode the encoded bytes back to a string
+const decodedText = decoder.decode(encodedData);
+
+// Lenny Kim
+console.log(decodedText); 
+```
+
+### 65. Working with Binary data directly
+Use `blob` in `Response` and you can access `arrayBuffer` and then you can shape it to Typed Array.
+
+```javascript
+fetch('https://<url>/binaryreturn', { method: 'GET' })
+  .then(response => {
+    return response.blob();
+  })
+  .then(blobData => {
+    return blobData.arrayBuffer();
+  })
+  .then(arrayBuffer => {
+    const uint8Array = new Uint8Array(arrayBuffer);
+    console.log('Uint8Array:', uint8Array);
+  })
+```
 
 ```
   \o/
