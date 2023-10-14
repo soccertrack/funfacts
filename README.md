@@ -5,7 +5,7 @@
  > ^ <
 ```
 ### 00. Javascript can do extension 
-An extension is a feature that allows you to add new functionality to an existing class without modifying original class directly. Extensions are a way to extend the behavior and capabilities of types without subclassing. You to add new functionality to an object after the object is created.
+An extension in programming is a mechanism that enables the augmentation of features in an existing class without making direct modifications to the original class. It's a method to enhance the behavior and abilities of types without the need for subclassing. With extensions, you can incorporate additional functionality into an object after the object has been initially created.
 
 ```javascript
 // class definition
@@ -34,7 +34,8 @@ person.fooBar();
   3. Code inside the arrow function is not compiled until it is being called.
      
 ```javascript
-// creating functions
+// calling fooBar2 before it is declared
+fooBar2() // this stil work since function is hoisted.
 
 // with arrow function
 const fooBar1 = () => { console.log(`fooBar1`);}
@@ -45,7 +46,10 @@ function fooBar2() { console.log(`fooBar2`);}
 
 
 ### 02. Dot notation and Bracket notation can access/mutate property the same way
-You can access/mutate properties in object using both dot notation and bracket notation. Bracket notation is more flexible and allow key to be known at runtime. While dot notation is known before time, more direct and should have slight performance advantage.
+
+In JavaScript, you have two primary methods to access and modify properties of an object: dot notation and bracket notation.
+
+Dot notation is straightforward and direct, suitable when the key is known in advance. It offers a slight performance advantage due to its directness. On the other hand, bracket notation provides more flexibility, allowing keys to be determined dynamically at runtime, making it the preferred choice in such cases.
 
 ```javascript
 let person = new Object();
@@ -59,7 +63,7 @@ console.log(person['something']);
 
 
 ### 03. Javascript call(...) function reverse the order of calling method
-Using Javascript call, we can call a method with function.call(obj, ...) instead of obj.function(...). Various scenarios such as method borrowing & making inheritance possible in Javascript.
+In JavaScript, we can invoke a method using the call function, which allows us to call a method in the format function.call(obj, ...) instead of the usual obj.function(...). This approach opens up various scenarios like method borrowing and enables the implementation of inheritance in JavaScript.
 
 ```javascript
 function greet() {
@@ -73,7 +77,7 @@ greet.call(person);
 
 
 ### 04. Javascript call and apply are similar except ...
-The apply method is similar to the call method, except that call takes arguments individually, whereas apply takes them as an array. It's useful when you want to invoke a function with a specific context and a variable number of arguments provided in an array-like structure. Making it more dynamic and decide at runtime.
+The apply method in JavaScript is akin to the call method, with a notable difference: while call takes arguments individually, apply takes them in the form of an array. This makes it a valuable choice when you need to invoke a function with a defined context and a variable number of arguments supplied within an array-like structure. It enhances dynamism by allowing decisions to be made at runtime regarding the arguments being passed.
 
 ```javascript
 function greet(foo) {
@@ -111,7 +115,7 @@ func();
 
 
 ### 06. Loose equity (==) vs Strict equity
-Loose equity will attempt to convert before doing comparison, while strict equity does not convert.
+Loose equity (==) will attempt to convert before doing comparison, while strict equity (===) does not convert.
 
 ```javascript
 // loose equity check
@@ -162,7 +166,7 @@ student1.showId();
 ```
 
 ### 08. Proper class inheritance in Javascript
-extends keyword is introduced in ES6.
+**extends** keyword is introduced in ES6.
 
 ```javascript
 class Person {
@@ -181,7 +185,7 @@ class Student extends Person {
 ```
 
 ### 09. Prototype Chain
-When you are calling a method or access a property from an object. If the method or property is not found in the object, it will attempt to search in the prototype object. If that is not available, it will continue to walk up the prototype chain. If nothing is found, it will return **undefined**.
+When you call a method or access a property of an object in JavaScript, if the method or property isn't directly present in the object, the interpreter will attempt to search for it in the object's prototype. If not found there, it continues this search along the parent's prototype chain. If the search yields no result, the return value will be **undefined**.
 
 ### 10. Object deconstructing
 Object destructuring allows you to extract properties from an object and assign them to variables in a more concise and convenient way. The name has to match the property name and only need to do assignment on the properties you are interested.
@@ -216,7 +220,9 @@ foo();
 ```
 
 ### 12. let or const
-let and const are block scoped. You must initialize a const value and can't change it. You can have let without initialization and you can reassign the value in let. If you have to reassign the reference in your code, use let. Otherwise, always use const.
+In JavaScript, let and const are block-scoped variables. When using const, you must initialize the variable, and once assigned, you cannot change its value. On the other hand, with let, you can declare a variable without immediate initialization and later assign and reassign values to it.
+
+A good practice is to utilize const when you don't need to reassign the reference, promoting immutability. Conversely, opt for let when you need to reassign values during the program's execution.
 
 ```javascript
 function foo() {
@@ -232,7 +238,7 @@ function foo() {
 foo();
 ```
 ### 13. Object spreading ...
-Object spreading is a convenient feature in Javascript to do quick shallow copy or merging values. It makes your code more concise.
+Object spreading is a convenient and concise feature in JavaScript that enables rapid creation of shallow copies or merging of values within objects.
 
 ```javascript
 const obj = { a: 1, b: 2 };
@@ -243,7 +249,7 @@ const merged = { ...obj, ...obj2 }; // merged object
 ```
 
 ### 14. Javascript engine and it's environment
-All the Javascript engines out there are single threaded. It has a single message loop / queue which process one task at a time. Environment around Javascript such as Browser or Node.js env have multiple threads. A fetch call is done in i/o thread and when it return, it will callback and put into message loop. This single thread is also known as UI thread or Main thread. Because it is single threaded, there's no need to do lock for thread synchronization.
+JavaScript engines universally operate in a single-threaded environment. They function through a single message loop or queue that processes one task at any given time. The larger JavaScript environment, like browsers or Node.js, encompasses multiple threads. For example, a fetch call occurs in an I/O thread; upon completion, it callbacks and enters the message loop. This singular thread is often referred to as the UI thread or main thread. Due to this single-threaded nature, there's no necessity for thread synchronization using locks.
 
 ### 15. Higher order functions
 Higher order function facilitates functional programming concepts and allow for more modular, concise, flexible, and reusable code. Here are the functions commonly used:
@@ -293,9 +299,9 @@ for (const e of arr) { // more control structure with regular for loop.
 ```
 
 ### 17. Script to machine code
-Javascript engine can either use Bytecode (interpreted) or Machine Code (compiled) for running program. In general, scripts must be turn into AST tree (abstract syntax tree). It will then turn into bytecode which is good enough for interpreter to run. 
+JavaScript engines have the flexibility to execute programs using either bytecode (interpreted) or machine code (compiled). Typically, scripts are first converted into an Abstract Syntax Tree (AST), forming the basis for generating bytecode, which is efficient for interpretation.
 
-When the engine detect some hot path/segment, it will optimize those path by compiling them into machine code (native). This code will run the fastest. The optimized code is based on some assumptions (such as certain properties always there etc). When the assumption is invalid, de-optimization happens and it will throw away the generated machine code and back to interpreted mode.
+During execution, the engine identifies hot segments or paths in the code. It optimizes these segments by compiling them into native machine code, enhancing performance significantly (this is TurboFan in V8 engine). However, this optimized code relies on specific assumptions, like the presence of certain properties. If these assumptions prove incorrect during execution, a process called de-optimization occurs. The engine discards the generated machine code and reverts to interpreted mode to maintain correctness.
 
 ```mermaid
 graph TD;
@@ -305,7 +311,7 @@ graph TD;
 ```
 
 ### 18. {} vs Map for Dictionary functionality
-{} has been used as dictionary for a long time due to the lack of Javascript Map support. Map is now available (see code). One should always use Map. The reason being Map is implemented in hashmap while {} is simply regular object in Javascript. Retrieval for Map will be O(1) and {} will be O(n). In Map, order of insertion is preserved.
+For a long time, JavaScript developers used {} as a makeshift dictionary due to the absence of native Map support. However, with the availability of Map (as shown in the code snippet), it's advisable to use Map consistently. The key advantage of Map lies in its underlying implementation as a hashmap, ensuring fast retrieval with O(1) complexity compared to the O(n) complexity of regular objects represented by {}. Additionally, Map maintains the order of insertion, providing a predictable structure.
 
 ```javascript
 const fakeMap = {
@@ -322,18 +328,18 @@ realMap.set('key2', 'value2');
 console.log(realMap.get('key1'));
 ```
 
-### 19. Never ever compare a NaN
+### 19. Never ever compare with NaN
 The NaN value in JavaScript is of the type number. NaN is not equal to itself; hence, comparing NaN to anything, even itself, will result in false.
 
 ```javascript
 const a = NaN;
 console.log(a == NaN)    // false
 console.log(a === NaN)   // false, woah
-console.log(a === a)     // false, what?!!
+console.log(a === a)     // false, what ?!!
 ```
 
 ### 20. Trusting array.length can have side-effect
-The implementation of length is a little weird. If we assign to an index directly, the length will be index+1. Javascript never allocate the entire array. So becareful as this can be a very subtle bug that takes a long time to debug.
+The behavior of the length property in JavaScript can be somewhat peculiar. When we directly assign a value to an index, the length of the array becomes index+1. It's important to note that JavaScript doesn't pre-allocate memory for the entire array. This behavior can sometimes introduce subtle bugs that are challenging to debug, so caution is advised when working with arrays in this manner.
 
 ```javascript
 const a = [];
@@ -450,7 +456,7 @@ console.log('promise completed');  // will print after 10s
 ```
 
 ### 26. Using additional thread to do work
-You are right, Javascript engine is single threaded. The environment around Javascript such as Node.js or browser do support Web Worker API which allows you to create threads and have mechanism to communicate back to Javascript main thread. Web Workers allow you to perform complex calculations, operations, or tasks without blocking the main thread, which can enhance the responsiveness and performance of your web application.
+Indeed, the JavaScript engine operates in a single-threaded environment. However, the broader JavaScript ecosystem, encompassing environments like Node.js and browsers, supports the Web Worker API. Web Workers enable the creation of threads and establish mechanisms for communication back to the JavaScript main thread. This capability empowers developers to execute intricate calculations, operations, or tasks without hindering the main thread, thereby optimizing the responsiveness and performance of web applications.
 
 ```javascript
 // Create a new Web Worker
@@ -476,7 +482,7 @@ self.addEventListener('message', (event) => {
 ```
 
 ### 27. Can I have many threads?
-Yes. Just create as many Worker and listen to them.
+Yes. Just create as many Worker object and listen to them.
 
 ```javascript
 
@@ -515,7 +521,7 @@ const canvas = document.querySelector("#glcanvas");
 ```
 
 ### 30. Accessing GPU (Part 2)
-You can use tensorflow.js and similar API for ML task. Though this is more specialized. For general purpose, we can access WebGPU from Javascript. Sample [here](https://mdn.github.io/dom-examples/webgpu-compute-demo/script.js). Just like any work sent to GPU, it is commonly done in a shader. Another GPGPU library is [gpu.js](https://gpu.rocks/#/).
+TensorFlow.js and similar APIs are specialized tools often used for machine learning (ML) tasks. Though this is more specialized. For general purpose, we can use WebGPU feature from Javascript. Sample [here](https://mdn.github.io/dom-examples/webgpu-compute-demo/script.js). Just like any work sent to GPU, it is commonly done in a shader. Another GPGPU library is [gpu.js](https://gpu.rocks/#/).
 
 ```javascript
 // Compute shader
@@ -572,15 +578,16 @@ The above code will leak memory because innerFunction is holding to outer_data. 
 leakedClosure = null;
 ```
 
-There are many other ways to leak memory in Javascript:
+There are several ways memory can unintentionally be retained in JavaScript:
+
 - Circular reference (A -> B -> A)
 - Setting global variable to external like window object.
-- Any map / array in global will hold everything in memory.
-- Event handler as a closure.
-- Timer without clear timer.
+- Keeping maps or arrays in the global scope, holding everything in memory.
+- Event handlers enclosed in closures.
+- Timers not properly cleared.
 
 ### 33. WeakMap / WeakSet
-WeakMap provides a way to create a collection of key-value pairs where the keys are weakly referenced. In other words, entries in a WeakMap do not prevent the keys from being garbage-collected when there are no other references to them.
+The WeakMap in JavaScript offers a means to establish a collection of key-value pairs, where the keys are held via weak references. Essentially, entries in a WeakMap do not hinder the keys from being garbage-collected if there are no other references to them.
 
 ```javascript
 const weakMap = new WeakMap();
@@ -602,7 +609,7 @@ keyObject = null;
 ```
 
 ### 34. Can Javascript handle binary?
-Yes. Mainly using **Buffer** class. See examples below"
+Yes, Javascript can handle binary. Mainly using **Buffer** class. See examples below"
 
 ```javascript
 const byteArray = [0x48, 0x65, 0x6C, 0x6C, 0x6F]; // ASCII codes for 'Hello'
@@ -612,7 +619,9 @@ console.log('Buffer from byte array:', bufferFromByteArray);
 ```
 
 ### 35. Javascript Binding for C++ library
-The way it has been is library developer write code in C++ and use tool like **node-gyp** build and bind into Node using addon API. This is changing. The modern way to do this is via WebAssembly [More info here](https://developer.mozilla.org/en-US/docs/WebAssembly). You can use any language (C/C++, C#, Python, Go, Rust, Java & Kotlin )to write wasm and create as a wasm module.
+
+
+Traditionally, library developers wrote code in C++ and utilized tools like node-gyp to build and bind the code into Node.js using addon APIs. However, the landscape is evolving. A contemporary approach involves leveraging WebAssembly, as detailed [More info here](https://developer.mozilla.org/en-US/docs/WebAssembly). With WebAssembly, you're no longer confined to a specific language; you can use a variety of languages such as C/C++, C#, Python, Go, Rust, Java, and Kotlin to write code and compile it into a WebAssembly module.
 
 ```javascript
 // my-asm.js is created with 'emcc native_code.cpp -o my-asm.js'
@@ -626,7 +635,7 @@ Module.onRuntimeInitialized = function() {
 ```
 
 ### 36. What is Javascript bridge
-Javascript bridge is a mechanism where Javascript code (normally in a webview) can communicate 2-way with their host (iOS native, Android native, Flutter). This is very common in Mobile development and it's very common to have a webview within the application.
+A JavaScript bridge acts as a crucial mechanism, enabling bidirectional communication between JavaScript code (typically residing in a webview) and its host environment, whether it's iOS native, Android native, or Flutter. This functionality is pervasive in mobile development, particularly when integrating a webview within applications.
 
 ```javascript
 // iOS
@@ -672,7 +681,7 @@ button.addEventListener('click', function() {
 This is good to know but it really doesn't matter to me. I think it depends on your codebase. Just be consistent with it.
 
 ### 39. SharedArrayBuffer
-When passing data between web workers and main, data has to be serialized, deserialized and copy. This is inefficient especially for ML related work. SharedArrayBuffer is introduced and now you can share buffer across different contexts.
+In the context of data transfer between web workers and the main thread, there's typically a need to serialize, deserialize, and make copies of the data, which can be highly inefficient, especially in scenarios related to machine learning. However, the introduction of SharedArrayBuffer has addressed this inefficiency by enabling the sharing of a buffer across different execution contexts.
 
 ```javascript
 const buffer = new SharedArrayBuffer(16);
@@ -706,9 +715,10 @@ console.log('Product:', product); // Outputs: Product: 1219326311126352697579906
 ```
 
 ### 41. Nullish Coalescing Operator (??) 
-?? is used to set default value if the variable is either null or undefined. Developers have been using || to set default value and that is different from ??. 
-- ?? will set default value if value is null or undefined
-- || will set default value if lhs is false. For eg. const defaultValue = '' || 'default'; // will always set to 'default'.
+The '??' operator, also known as the nullish coalescing operator, serves to assign a default value if a variable is either null or undefined. This is distinct from the '||' operator, which developers have historically used to set default values. Here's a breakdown of the differences:
+
+- '??' sets the default value if the variable is null or undefined.
+- '||' sets the default value if the left-hand side (lhs) is evaluated as false. For example, const defaultValue = '' || 'default'; will always be set to 'default' unless the left-hand side is a truthy value other than an empty string.
 
 ```javascript
 const userInput = null; // This could be null or undefined
@@ -720,10 +730,11 @@ console.log(defaultValue); // Outputs: default
 ```
 
 ### 42. Dynamic Import
-Dynamic import is a game changer. Before this feature, import can statically load in modules for code maintenance, accessing libraries etc. Dynamic import can import module at runtime even in a branch (if). This means:
-- This can be use as lazy loading, code splitting.
-- Url can be external url. 
-- Performance gain, imagine putting modules where users rarely invoke into dynamic import.
+Dynamic import is a transformative addition to JavaScript. Unlike the traditional static import, which loads modules at compile-time, dynamic import allows for on-demand module loading during runtime, even within conditional branches. This has far-reaching implications:
+
+- Facilitates lazy loading and code splitting, enhancing performance.
+- Permits importing from external URLs.
+- Optimizes performance by strategically placing modules that are seldom accessed into dynamic imports.
 
 ```javascript
 const moduleUrl = 'https://url.com/path/remote-module.js';
@@ -739,14 +750,14 @@ import(moduleUrl)
 ```
 
 ### 43. Optional Chaining (?.)
-Optional chaining has been around for many languages such as swift and typescript. Now, optional chaining is made first class in Javascript. This allows code to be more secure and get rid of error like 'length in not a property of undefined'.
+Optional chaining, a feature prevalent in languages like Swift and TypeScript, has become a first-class citizen in JavaScript. This enhancement significantly enhances code robustness by eliminating errors such as 'length is not a property of undefined'.
 
 ```javascript
 const userName = user?.propertyDoesNotExist?.fooBar(); // userName will be undefined but no error accessing
 ```
 
 ### 44. Object.fromEntries
-Object.fromEntries will take in 2d matrix (format as key / value) and output Javascript object.
+The Object.fromEntries method processes a 2D matrix formatted as key-value pairs and transforms it into a JavaScript object.
 
 ```javascript
 const entries = [
@@ -760,8 +771,7 @@ console.log(obj); // { name: 'Lenny', id: 123 }
 ```
 
 ### 45. Atomics features
-Javascript Atomics is recent feature of Javascript. This set of API is similar to C11's **stdatomic.h**. This set of Atomics API is ensuring synchronization with **SharedArrayBuffer**. 
-This is built for environment with multiple threads such as Web Worker to use Shared resources and be synchronized. The APIs:
+JavaScript Atomics is a recent feature in JavaScript, resembling C11's stdatomic.h API. Atomics provides a set of APIs that ensure synchronization with SharedArrayBuffer. It's designed for environments with multiple threads, like Web Workers, enabling the use of shared resources while maintaining synchronization. The APIs:
 
 - Atomics.add(typedArray, index, value)
 - Atomics.sub(typedArray, index, value)
