@@ -1,4 +1,4 @@
-# R@nd0m javascript b1t5
+## 𝓇𝒶𝓃𝒹ℴ𝓂 𝒿𝒶𝓋𝒶𝓈𝒸𝓇𝒾𝓅𝓉 𝒷𝒾𝓉𝓈
 ```
  /\_/\  
 ( o.o ) 
@@ -720,7 +720,7 @@ console.log(defaultValue); // Outputs: default
 ```
 
 ### 42. Dynamic Import
-Dynamic import is a game changer. It is so good, I assign it as #42. Before this, import can load in modules for code maintenance, accessing libraries etc. Dynamic import can import module at runtime even in a branch (if). This means:
+Dynamic import is a game changer. Before this feature, import can statically load in modules for code maintenance, accessing libraries etc. Dynamic import can import module at runtime even in a branch (if). This means:
 - This can be use as lazy loading, code splitting.
 - Url can be external url. 
 - Performance gain, imagine putting modules where users rarely invoke into dynamic import.
@@ -758,6 +758,38 @@ const obj = Object.fromEntries(entries);
 
 console.log(obj); // { name: 'Lenny', id: 123 }
 ```
+
+### 45. Atomics features
+Javascript Atomics is recent feature of Javascript. This set of API is similar to C11's **stdatomic.h**. This set of Atomics API is ensuring synchronization with **SharedArrayBuffer**. 
+This is built for environment with multiple threads such as Web Worker to use Shared resources and be synchronized. The APIs:
+
+- Atomics.add(typedArray, index, value)
+- Atomics.sub(typedArray, index, value)
+- Atomics.and(typedArray, index, value)
+- Atomics.or(typedArray, index, value)
+- Atomics.xor(typedArray, index, value)
+- Atomics.load(typedArray, index)
+- Atomics.store(typedArray, index, value)
+- Atomics.wait(typedArray, index, value, timeout)
+- Atomics.notify(typedArray, index, count)
+- Atomics.exchange(typedArray, index, value)
+- Atomics.compareExchange(typedArray, index, expectedValue, replacementValue)
+
+Sample code to atomically store a value in ShareArrayBuffer in a thread-safe way.
+```javascript
+const sharedBuffer = new SharedArrayBuffer(4);  // Create a shared buffer of 4 bytes
+const sharedArray = new Int32Array(sharedBuffer);  // Create a typed array to operate on the shared buffer
+
+// Initial value in the shared array
+sharedArray[0] = 99;
+console.log('value:', sharedArray[0]);  // Outputs: value: 99
+
+// In worker thread or other context.
+// Atomics.store to atomically set a new value.
+const newValue = 55;
+Atomics.store(sharedArray, 0, newValue);
+```
+
 ### 38. Offline manifest
 
 ### 39. Service Worker
