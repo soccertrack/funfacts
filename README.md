@@ -897,7 +897,7 @@ self.addEventListener('fetch', event => {
 });
 ```
 ### 49. PostMessage
-The `postMessage` API serves as a crucial communication mechanism that facilitates interaction between various components in web development, including Service Workers, the main page, other frames, different windows, and even Chrome extensions. This communication is bidirectional, allowing for seamless exchange of data and messages between these components, enhancing the overall functionality and capabilities of the web application.
+The `postMessage` API serves as a crucial communication mechanism that facilitates interaction between various components in web development, including Service Workers, the main page, other frames, different windows, and even Chrome extensions. This communication can be 1-way or 2-ways but need to be targeted, allowing for seamless exchange of data and messages between these components, enhancing the overall functionality and capabilities of the web application.
 
 ```javascript
 const targetWindow = window.parent; 
@@ -912,7 +912,38 @@ window.addEventListener('message', event => {
 });
 ```
 
-### 50. CustomEvent
+### 50. BroadcastChannel
+BroadcastChannel allows for broadcasting a message to all instances listening on the same channel within the same origin. While PostMessage is 1 to 1, BroadcastChannel to 1 to many and is more suitable for cases where you need to synchronize state or share data among different instances of your application.
+
+```javascript
+// Publisher
+// Creating a new BroadcastChannel named "mychannel"
+const publisher = new BroadcastChannel('mychannel');
+
+// Sending a message on the channel
+publisher.postMessage('Hello, everyone! This is a broadcasted message.');
+
+----
+// Subscriber 1
+const sub1 = new BroadcastChannel('mychannel');
+
+// Listening for messages on the channel
+sub1.addEventListener('message', (event) => {
+  console.log('Received message:', event.data);
+});
+---
+// Subscriber 2
+const sub2 = new BroadcastChannel('mychannel');
+
+// Listening for messages on the channel
+sub2.addEventListener('message', (event) => {
+  console.log('Received message:', event.data);
+});
+---
+
+```
+
+### 51. CustomEvent
 If you felt that `PostMessage` is overkill & your requirement is within the same application, you should look at `CustomEvent`. You can send this event to any DOM element and receiver can control bubbling and cancel.
 
 ```javascript
@@ -932,7 +963,7 @@ document.addEventListener('customEvent', event => {
 
 ```
 
-### 51. JSON reviver
+### 52. JSON reviver
 `JSON.parse` and `JSON.stringify` are commonly used API in Javascript when dealing with data. In `JSON.parse`, you can optionally pass in a `reviver function` which can be a transformer function. Note that JSON.parse will still need to complete because passing into reviver function so it is **not** a streaming API. Sample here:
 
 ```javascript
@@ -956,7 +987,7 @@ const o = JSON.parse(jsonString, reviver);
 
 ```
 
-### 52. ReadableStream & WritableStream
+### 53. ReadableStream & WritableStream
 This is part of Javascript streams API [more info](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). The Streams API (ES2018) allows JavaScript to programmatically access streams of data received over the network and process them as desired by the developer. The benefit when done right is that you can get chunks of data as it is coming in and able to time slice and process bits earlier instead of waiting for all data to come in (synchronously) and then process.
 
 Code sample:
@@ -986,7 +1017,7 @@ while (true) {
 handleStream().catch(error => console.error('Error:', error));
 ```
 
-### 53. EventSource (SSE)
+### 54. EventSource (SSE)
 The `EventSource` API provides a straightforward and efficient way to receive real-time updates from a server through a single HTTP or HTTPS connection. The connection is initiated by a single request and remains open, allowing the server to send multiple response streams to the client, which are then closed after each event. The server-sent events (SSE) endpoint on the server must be set up to send events in a specific format, usually utilizing the text/event-stream content type.
 
 Compared to receiving a single block of updates all at once from a single endpoint API, EventSource allows for a faster, more progressive and responsive update delivery to the client. This results in a smoother flow of updates and a better user experience. While it's possible to achieve similar functionality by making multiple HTTP calls from the client, utilizing EventSource reduces resource usage on both the client and server sides, making it an efficient choice for real-time updates.
@@ -1017,6 +1048,30 @@ sequenceDiagram
 
   Client->>Server: Close SSE Connection
   Server->>Client: HTTP 204 No Content (SSE connection closed)
+```
+
+### 55. WebSocket
+`WebSocket` enable full-duplex communication, making them ideal for real-time, bidirectional data exchange. This feature is particularly useful for applications like multiplayer games, where seamless communication in both directions is essential. The programming approach for WebSockets is akin to that of `EventSource`. WebSockets can facilitate communication not only from the client to the server but also between servers, making them versatile for a wide range of applications.
+
+```javascript
+const socket = new WebSocket('ws://<url>); 
+
+socket.addEventListener('open', (event) => {
+  console.log('WebSocket connection opened:', event);
+  socket.send('Hello, server!');
+});
+
+socket.addEventListener('message', (event) => {
+  console.log('Received message from server:', event.data);
+});
+
+socket.addEventListener('close', (event) => {
+  console.log('WebSocket connection closed:', event);
+});
+
+socket.addEventListener('error', (event) => {
+  console.error('WebSocket error:', event);
+});
 ```
 
 ```
