@@ -288,7 +288,7 @@ Considering that we have an array, is it better to use traditional `for loop` or
 const arr = [1,2,3,4,5];
 
 arr.forEach(e => {     // forEach has overhead of creating closure.
-   console.log(e);
+   console.log(e);     // can't break or return
 });
 
 for (const e of arr) { // more control structure with regular for loop.
@@ -339,7 +339,7 @@ console.log(a === a)     // false, what ?!!
 ```
 
 ### 20. Trusting array.length can have side-effect
-The behavior of the `length` property in JavaScript can be somewhat peculiar. When we directly assign a value to an index, the length of the array becomes index+1. It's important to note that JavaScript doesn't pre-allocate memory for the entire array. This behavior can sometimes introduce subtle bugs that are challenging to debug, so caution is advised when working with arrays in this manner.
+The behavior of the `length` property in JavaScript can be somewhat peculiar. When we directly assign a value to an index, the length of the array becomes index + 1. It's important to note that JavaScript doesn't pre-allocate memory for the entire array. This behavior can sometimes introduce subtle bugs that are challenging to debug, so caution is advised when working with arrays in this manner.
 
 ```javascript
 const a = [];
@@ -824,6 +824,19 @@ Atomics.store(sharedArray, 0, newValue);
 ### 47. setTimeout zero 
 `setTimeout` with 0ms doesn't mean it will run right away. This is a trick to dispatch task to the end of the Javascript message queue. You can also use this technique to yield to break long running job to smaller chunks. Using `requestAnimationFrame` or `Promise.resolve().then(() => {})` can achieve the same result.
 
+```mermaid
+sequenceDiagram
+
+    Note over Dispatcher, Queue: Event Dispatched 
+    Dispatcher->>Queue: Dispatch Event
+
+    Queue->>Handler: First task from Message Queue
+    Note over Handler: Event is converted to a task
+
+    Handler->>Runtime: Process Task
+```
+
+Sample code:
 ```javascript
 setTimeout(() => {
     console.log("task 1");
