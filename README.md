@@ -1026,10 +1026,6 @@ BroadcastChannel allows for broadcasting a message to all instances listening on
 // Creating a new BroadcastChannel named "mychannel"
 const publisher = new BroadcastChannel('mychannel');
 
-// Sending a message on the channel
-publisher.postMessage('Hello, everyone! This is a broadcasted message.');
-
-----
 // Subscriber 1
 const sub1 = new BroadcastChannel('mychannel');
 
@@ -1037,7 +1033,7 @@ const sub1 = new BroadcastChannel('mychannel');
 sub1.addEventListener('message', (event) => {
   console.log('Received message:', event.data);
 });
----
+
 // Subscriber 2
 const sub2 = new BroadcastChannel('mychannel');
 
@@ -1045,7 +1041,9 @@ const sub2 = new BroadcastChannel('mychannel');
 sub2.addEventListener('message', (event) => {
   console.log('Received message:', event.data);
 });
----
+
+// Sending a message on the channel
+publisher.postMessage('Hello, everyone! This is a broadcasted message.');
 
 ```
 
