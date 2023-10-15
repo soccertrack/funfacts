@@ -460,7 +460,13 @@ Promise.race(promises)
   .then((result) => console.log('Promise resolved:', result))
   .catch((error) => console.error('Promise rejected:', error));
 ```
-
+```
+    .----.   @   @
+   / .-"-.`.  \v/   (HOW MUCH LONGER)
+   | | '\ \ \_/ )
+ ,-\ `-.' /.'  /
+'---`----'----'
+```
 ### 25. What happen when we await Promise(), how does javascript resume.
 Javascript is single threaded. When awaiting a promise, Javascript won't run the next line until promise is fulfilled.
 When encountering an `await` statement:
@@ -1362,7 +1368,13 @@ MyClass.privateMethod();              // Error, can't call this from outside
 console.log(MyClass.privateProperty); // Error, can't call this from outside
 
 ```
-
+```
+      __ \/ __
+     /o \{}/ o\
+     \   ()   /
+      `> /\ <`
+      (o/\/\o)
+```
 ### 69. undefined
 It's important to avoid leaving variables as `undefined` in your JavaScript code. Variables are considered undefined when they haven't been assigned or initialized. However, it's essential to be aware of certain undefined behaviors in JavaScript that can affect your code:
 ```javascript
