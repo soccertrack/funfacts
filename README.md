@@ -1460,6 +1460,41 @@ closure('Inner value');
 closure = null;
 ```
 
+### 75. Common Math issues in Javascript
+Here are some common Math issues to beware of:
+
+```javascript
+// Unexpected results due to floating-point precision errors
+let a = 0.1 + 0.2;      
+console.log(a);                     // 0.30000000000000004
+
+// to fix this
+const roundedResult = Math.round(a * 1000) / 1000;
+console.log(roundedResult);         //  0.3
+
+// Need to spread array in min/max
+const numbers = [1, 2, 3, 4];
+console.log(Math.max(numbers));     // NaN
+console.log(Math.max(...numbers));  // 4
+
+// The Math.round() function rounds to the nearest integer.
+// However, for numbers exactly halfway between two integers,
+// it rounds to the nearest even number. This is known as
+// the 'round half to even'.
+console.log(Math.round(1.5));       // 2
+console.log(Math.round(2.5));       // 2 but why?
+
+// Divide by zero is ok in Javascript
+console.log(1 / 0);                 // Infinity
+console.log(-1 / 0);                // -Infinity
+console.log(0 / 0);                 // NaN
+
+// Infinity is the result of numeric overflow
+console.log(Math.pow(2, 1024));     // Infinity
+```
+
+
+
 ```
   \o/
    |       We did it!
