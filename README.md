@@ -1172,6 +1172,11 @@ console.log(newArray);
 for (const [index, value] of arr.entries()) {
   console.log(index, value);
 }
+
+// for..in
+for (const value in arr) {
+  console.log(value);
+}
 ```
 
 ### 58. Stack using Array
