@@ -1340,6 +1340,30 @@ function animate() {
   requestAnimationFrame(animate);
 }
 ```
+### 68. Static Class functionality
+`Static Class` is available in Javascript. You can have public / private static method and static field. There is no static contructor in Javascript.
+
+```javascript
+class MyClass {
+  static staticProperty = 'Some value';
+  static #privateProperty = 'foo';
+
+  static staticMethod() {
+    console.log('This is a static method');
+    this.#privateMethod(); // this call is ok
+  }
+
+  static #privateMethod() {}
+}
+
+console.log(MyClass.staticProperty);  // Accessing a static property
+MyClass.staticMethod();               // Calling a static method
+MyClass.privateMethod();              // Error, can't call this from outside
+console.log(MyClass.privateProperty); // Error, can't call this from outside
+
+```
+
+
 ```
   \o/
    |       We did it!
