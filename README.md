@@ -615,8 +615,8 @@ There are several ways memory can unintentionally be retained in JavaScript:
 - Event handlers enclosed in closures.
 - Timers not properly cleared.
 
-### 33. WeakMap / WeakSet
-The `WeakMap` in JavaScript offers a means to establish a collection of key-value pairs, where the keys are held via weak references. Essentially, entries in a WeakMap do not hinder the keys from being garbage-collected if there are no other references to them.
+### 33. WeakMap / WeakSet / WeakRef
+The `WeakMap` in JavaScript offers a means to establish a collection of key-value pairs, where the keys are held via weak references. Essentially, entries in a WeakMap do not hinder the keys from being garbage-collected if there are no other references to them. The same concept applies to WeakSet (for Set) and WeakRef (for Object).
 
 ```javascript
 const weakMap = new WeakMap();
