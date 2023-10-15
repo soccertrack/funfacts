@@ -16,7 +16,7 @@ class Person {
   }
 }
 // creating an instance of Person
-let person = new Person('Kenny', 'Lim');
+let person = new Person('Lenny', 'Kim');
 
 // extending Person type
 Person.prototype.fooBar = function() {
@@ -204,7 +204,17 @@ class Student extends Person {
   (_,...'(_,.`__)/'.....+
 ```
 ### 09. Prototype Chain
-When you call a method or access a property of an object in JavaScript, if the method or property isn't directly present in the object, the interpreter will attempt to search for it in the object's prototype. If not found there, it continues this search along the parent's `prototype chain`. If the search yields no result, the return value will be **undefined**.
+Prototype chain is a fundamental mechanism that allows objects to inherit properties and methods from other objects. Every object in JavaScript has a prototype, which is either another object or null.
+
+When you call a method or access a property of an object in JavaScript:
+
+- JavaScript checks if the property is present on the current object.
+- If the property is found on the current object, the process ends, and the value of the property is returned.
+- If the property is not found on the current object, JavaScript looks at the object's prototype (which is accessible via the __proto__ property).
+- JavaScript checks if the property is present on the prototype object.
+- If the property is found on the prototype object, the process ends, and the value of the property is returned.
+- If the property is not found on the prototype object, JavaScript continues up the prototype chain, checking the prototype of the prototype (and so on) until the property is found or reach end of the prototype chain.
+- If the end of the prototype chain is reached and the property is not found, JavaScript returns undefined to indicate that the property is not defined.
 
 ### 10. Object deconstructing
 `Object destructuring` allows you to extract properties from an object and assign them to variables in a more concise and convenient way. The name has to match the property name and only need to do assignment on the properties you are interested.
