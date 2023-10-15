@@ -1390,6 +1390,75 @@ const str3 = String("hello");
 console.log(str1 === str3); // false because of different ref.
 
 ```
+### 71. typeof operator
+The `typeof` operator in JavaScript is used to determine the type of a value or expression. Here are some of the types based on the value.
+
+```javascript
+typeof 7;              // "number"
+typeof "lenny";        // "string"
+typeof false;          // "boolean"
+typeof undefined;      // "undefined"
+typeof {};             // "object"
+typeof null;           // "object"        <-- strange
+typeof function() {};  // "function"
+
+let ref = () => {};
+typeof ref;            // [function: ref] <-- reference to a function
+```
+
+### 72. Quirks about instanceof
+The `instanceof` operator  in JavaScript is used to check if an object is an instance of a particular class or constructor. While it is simply to understand, here are some quirks about this operator:
+
+```javascript
+const boxedStr = new String('hello')
+const boxedNumber = new Number(7)
+const arr = [1, 2, 3];
+
+console.log("hello" instanceof String)     // false. <- primitive is not Dtring
+console.log(boxedStr instanceof String)    // true.  <- boxed String
+console.log(7 instanceof Number)           // false. <- primitive is not Number
+console.log(boxedNumber instanceof Number) // true.  <- boxed Number
+
+console.log(arr instanceof Array);         // true
+console.log(arr instanceof Object);        // true.  <- array is from object
+```
+
+### 73. String("") vs new String("")
+- `String("")` is a function call to the String constructor. However, because it's called without the new keyword, it behaves like a conversion function. It converts the string literal "hello" to a string primitive.
+- `new String("")` creates a new instance of the String object using the String constructor. The result is an object of type String.
+
+
+### 74. Callback vs Closure
+`Callback` is a function that is pass into a function as param to facilitate asynchronous programming. 
+
+`Closure` is a function that return from an outer function so that you closure later. A closure is a function that "remembers" the environment in which it was created, including the variables and parameters available at that time. It encapsulates the state of the surrounding function, allowing access to its scope even after the outer function has finished executing.
+
+```javascript
+// Callback example
+
+function performTask(data, callback) {
+  // simulate async
+  setTimeout(function() {
+    callback(data);
+  }, 1000);
+}
+
+// Calling the function with a callback
+performTask('some data', (result)=> { console.log(result)});
+
+// Closure example
+function outerFunction(outerValue) {
+  return function innerFunction(innerValue) {
+    console.log(outerValue, innerValue);
+  };
+}
+
+let closure = outerFunction('Outer value');
+// call this much later, closure will keep outerFunction around
+closure('Inner value');
+// good to set to null to release
+closure = null;
+```
 
 ```
   \o/
