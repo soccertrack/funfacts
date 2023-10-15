@@ -1377,6 +1377,20 @@ function foo() {
 const result = foo();
 console.log(result); // undefined
 ```
+### 70. String Interning is default
+When you create a String in JavaScript using a string literal (e.g., "hello"), modern JavaScript engines often optimize by interning the string. This means that if you create multiple string literals with the same value, they may actually reference the same memory location rather than creating multiple copies of the string.
+
+```javascript
+const str1 = "hello";
+const str2 = "hello";
+
+console.log(str1 === str2); // true because both are the same ref.
+
+// if you want a different ref, do this.
+const str3 = String("hello");
+console.log(str1 === str3); // false because of different ref.
+
+```
 
 ```
   \o/
