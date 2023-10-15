@@ -701,7 +701,7 @@ Module.onRuntimeInitialized = function() {
 ```
 ```
  /\ /\ 
-((ovo))
+((ovo))  (OWL HANGOUT @ C++ LIBRARY)
 ():::()
   VVV
 ```
@@ -902,7 +902,7 @@ Atomics.store(sharedArray, 0, newValue);
      _.-^^---....,,--       
  _--                  --_  
 <                        >)
-|                         | 
+|          ATOMICS        | 
  \._                   _./  
     ```--. . , ; .--'''       
           | |   |             
@@ -1425,8 +1425,8 @@ console.log(MyClass.privateProperty); // Error, can't call this from outside
 ```
 ```
  ^...^
-<_* *_>   
-  \_/
+<_- -_>   
+  \_/    (SLEEPY)
         
 ```
 ### 69. undefined
