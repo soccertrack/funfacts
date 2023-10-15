@@ -183,7 +183,14 @@ class Student extends Person {
   }
 }
 ```
-
+```
+   |\---/|
+   | ,_, |   < GIVE ME MORE !!
+    \_`_/-..----.
+ ___/ `   ' ,""- \  
+(__...'   __\    |`.___.';
+  (_,...'(_,.`__)/'.....+
+```
 ### 09. Prototype Chain
 When you call a method or access a property of an object in JavaScript, if the method or property isn't directly present in the object, the interpreter will attempt to search for it in the object's prototype. If not found there, it continues this search along the parent's `prototype chain`. If the search yields no result, the return value will be **undefined**.
 
@@ -298,6 +305,20 @@ for (const e of arr) { // more control structure with regular for loop.
 }
 ```
 
+```
+                     .
+                    / V\  -- YAWN
+                  / `  /
+                 <<   |
+                 /    |
+               /      |
+             /        |
+           /    \  \ /
+          (      ) | |
+  ________|   _/_  | |
+<__________\______)\__)
+```
+
 ### 17. Script to machine code
 JavaScript engines have the flexibility to execute programs using either bytecode (interpreted) or machine code (compiled). Typically, scripts are first converted into an Abstract Syntax Tree (`AST`), forming the basis for generating `bytecode`, which is efficient for interpretation.
 
@@ -373,14 +394,6 @@ stateDiagram
     Pending --> Rejected : Reject
     Fulfilled --> [*] : Transition to pending
     Rejected --> [*] : Transition to pending
-```
-
-```
-  A A   ~~~~~~~~~~~~~~~~~~~
- (' ') < yawn! take a break
-(( ))   ~~~~~~~~~~~~~~~~~~~
-(( ))
-"" ""
 ```
 
 ### 22. Handling Promise that returned
@@ -559,10 +572,10 @@ fn main(
 ```
            __n__n__
     .------`-\00/-' 
-   /  ##  ## (oo)    < SERIOUSLY? WHEN DO I EVER NEED TO USE GPU !!
+   /  ##  ## (oo)    ~~ WHEN DO I EVER NEED TO USE GPU ?!!
   / \## __   ./
      |//YY \|/
-snd  |||   |||
+     |||   |||
 ```
 ### 31. What are all the Javascript engine?
 - `V8` - by far the most common Javascript engine. This is used in Chrome browser and Node.js runtime.
@@ -1188,6 +1201,13 @@ console.log(queue.dequeue()); // Output: 10
 console.log(queue.size());    // Output: 1
 
 ```
+
+```
+    |\__/,|   (`\
+  _.|o o  |_   ) )
+-(((---(((--------
+```
+
 ### 60. Typed Array
 Regular Javascript Array is storing as object. There are Typed Array introduced in Javascript to handle binary. Typed Arrays in JavaScript provide a way to work with raw binary data in a structured and efficient manner. They are array-like objects that represent arrays of specific numeric data types, allowing you to deal with low-level binary data directly. Here are the Typed Array available:
 
@@ -1299,6 +1319,27 @@ fetch(url, { signal })
   .catch(error => console.error('Error:', error));
 ```
 
+### 67. Timers
+There are 3 ways to do timer in Javascript. It is probably good to know when to use which API
+
+- `setTimeout`  (does not repeat)
+- `setInterval` (will repeat by default)
+- `requestAnimationFrame` (will get call everytime surface renders)
+
+```javascript
+setTimeout(() => {
+  console.log('This will be executed after 1 sec.');
+}, 1000);
+
+const intervalId = setInterval(() => {
+  console.log('This will be executed every 2 seconds until clearInterval(..) is called');
+}, 2000);
+
+function animate() {
+  console.log('Animating...');
+  requestAnimationFrame(animate);
+}
+```
 ```
   \o/
    |       We did it!
