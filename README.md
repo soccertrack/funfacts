@@ -458,8 +458,8 @@ Promise.all([promise1, promise2])
   });
 ```
 
-### 24. Wait for first promise to resolve.
-`Promise.race(..)`.There are use cases where we want to get the first promise that resolve, exit and not worry about the other promises.
+### 24. Wait for first promise to resolve or reject
+`Promise.race(..)`.There are use cases where we want to get the first promise that `resolve` or `reject`, exit and not worry about the other promises.
 
 ```javascript
 const promises = [
@@ -1696,6 +1696,31 @@ const num = 7;
 const name = 'Lenny';
 
 console.log(`The value of num is: ${num}, name: ${name}`);
+```
+
+### 81. Promise.any
+`Promise.any` is a different control structure than `race` and `all`. `Promise.any` return a new promise as soon as one of the input promises (an iterable of promises) is fulfilled, or it rejects if all of the input promises are rejected.
+
+```javascript
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Promise 1 fulfilled'), 400);
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(() => reject(new Error('Promise 2 rejected')), 800);
+});
+
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('Promise 3 fulfilled'), 1000);
+});
+
+Promise.any([promise1, promise2, promise3])
+  .then((value) => {
+    console.log('At least one promise is fulfilled:', value); // promise1 return
+  })
+  .catch((error) => {
+    console.error('All promises were rejected:', error);      // all promised rejected
+  });
 ```
 ```
   \o/
