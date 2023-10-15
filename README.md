@@ -1363,6 +1363,20 @@ console.log(MyClass.privateProperty); // Error, can't call this from outside
 
 ```
 
+### 69. Undefined
+We should not leave variable to be `undefined`. You get undefined when something is not assign or initialized. However, this is some undefined behavior that you should know about:
+
+```javascript
+console.log(undefined == null);  // true
+console.log(undefined === null); // false
+
+function foo() {
+    // no return statement
+}
+
+const result = foo();
+console.log(result); // undefined
+```
 
 ```
   \o/
