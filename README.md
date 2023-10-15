@@ -1363,9 +1363,8 @@ console.log(MyClass.privateProperty); // Error, can't call this from outside
 
 ```
 
-### 69. Undefined
-We should not leave variable to be `undefined`. You get undefined when something is not assign or initialized. However, this is some undefined behavior that you should know about:
-
+### 69. undefined
+It's important to avoid leaving variables as `undefined` in your JavaScript code. Variables are considered undefined when they haven't been assigned or initialized. However, it's essential to be aware of certain undefined behaviors in JavaScript that can affect your code:
 ```javascript
 console.log(undefined == null);  // true
 console.log(undefined === null); // false
