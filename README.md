@@ -680,7 +680,12 @@ Module.onRuntimeInitialized = function() {
   console.log('Result:', Module.foobar());
 };
 ```
-
+```
+ /\ /\ 
+((ovo))
+():::()
+  VVV
+```
 ### 36. What is Javascript bridge
 A `JavaScript bridge` acts as a crucial mechanism, enabling bidirectional communication between JavaScript code (typically residing in a webview) and its host environment, whether it's iOS native, Android native, or Flutter. This functionality is pervasive in mobile development, particularly when integrating a webview within applications.
 
@@ -872,6 +877,20 @@ console.log('value:', sharedArray[0]);  // Outputs: value: 99
 // Atomics.store to atomically set a new value.
 const newValue = 55;
 Atomics.store(sharedArray, 0, newValue);
+```
+
+```
+     _.-^^---....,,--       
+ _--                  --_  
+<                        >)
+|                         | 
+ \._                   _./  
+    ```--. . , ; .--'''       
+          | |   |             
+       .-=||  | |=-.   
+       `-=#$%&%$#=-'   
+          | ;  :|     
+ _____.,-#%&$@%#&#~,._____
 ```
 
 ### 47. setTimeout zero 
