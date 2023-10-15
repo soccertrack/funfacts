@@ -32,6 +32,7 @@ person.fooBar();
   1. A regular function is hoisted to top level by default, even when the code is the last statement of the file, it will be available everywhere.
   2. In constrast when an arrow function is called before there are defined, it will resolve to an error.
   3. Code inside the arrow function is not compiled until it is being called.
+  4. Function created by function constructor is also hoisted to top level by default.
      
 ```javascript
 // calling fooBar2 before it is declared
@@ -42,6 +43,10 @@ const fooBar1 = () => { console.log(`fooBar1`);}
 
 // regular function (hoisted)
 function fooBar2() { console.log(`fooBar2`);}
+
+// using function contructor to create new function
+const addFunction = new Function('a', 'b', 'return a + b;');
+const result = addFunction(2, 3);  // Result: 5
 ```
 
 
@@ -1505,7 +1510,8 @@ console.log(0 / 0);                 // NaN
 console.log(Math.pow(2, 1024));     // Infinity
 ```
 
-
+### 76. Do not use eval(..)
+Do not use `eval(..)` function has security risks and potential performance issues. Using eval() with untrusted or user-supplied data can lead to vulnerabilities like code injection and should be avoided.
 
 ```
   \o/
