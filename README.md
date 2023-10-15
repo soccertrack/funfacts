@@ -775,7 +775,7 @@ button.addEventListener('click', function() {
 This is good to know but it really doesn't matter to me. I think it depends on your codebase. Just be consistent with it.
 
 ### 39. SharedArrayBuffer
-In the context of data transfer between web workers and the main thread, there's typically a need to serialize, deserialize, and make copies of the data, which can be highly inefficient, especially in scenarios related to machine learning. However, the introduction of `SharedArrayBuffer` has addressed this inefficiency by enabling the sharing of a buffer across different execution contexts.
+In the context of data transfer between web workers, gpu workers and the main thread, there's typically a need to serialize, deserialize, and make copies of the data, which can be highly inefficient, especially in scenarios related to machine learning. However, the introduction of `SharedArrayBuffer` has addressed this inefficiency by enabling the sharing of a buffer across different execution contexts.
 
 ```javascript
 const buffer = new SharedArrayBuffer(16);
