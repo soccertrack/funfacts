@@ -494,6 +494,18 @@ await waitForMs(10000);            // wait for 10s but what happen here?
 console.log('promise completed');  // will print after 10s
 ```
 
+```mermaid
+sequenceDiagram  
+  JavaScriptEngine->>+Promise: Register continuation
+  activate Promise
+  Note over Promise: Promise settles
+  Promise-->>+TaskQueue: Add continuation
+  
+  EventLoop->>+TaskQueue: Check task queue
+  TaskQueue-->>-EventLoop: Continuation task on top of queue
+  EventLoop->>+JavaScriptEngine: Execute continuation
+```
+
 ### 26. Using additional thread to do work
 Indeed, the JavaScript engine operates in a single-threaded environment. However, the broader JavaScript ecosystem, encompassing environments like Node.js and browsers, supports the `Web Worker` API. Web Workers enable the creation of threads and establish mechanisms for communication back to the JavaScript main thread. This capability empowers developers to execute intricate calculations, operations, or tasks without hindering the main thread, thereby optimizing the responsiveness and performance of web applications.
 
@@ -518,6 +530,17 @@ self.addEventListener('message', (event) => {
   // Send the result back to the main thread
   self.postMessage(result);
 });
+```
+```mermaid
+sequenceDiagram
+  MainThread->>+WebWorker: Create new Web Worker instance and add listener
+  activate WebWorker
+
+  MainThread->>+WebWorker: Send message
+  WebWorker->>+WebWorker: Perform task
+  WebWorker-->>-MainThread: Send result
+
+  deactivate WebWorker
 ```
 
 ### 27. Can I have many threads?
