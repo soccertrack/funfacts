@@ -1563,6 +1563,40 @@ console.log(Math.pow(2, 1024));     // Infinity
 ### 76. Do not use eval(..)
 Do not use `eval(..)` function has security risks and potential performance issues. Using eval() with untrusted or user-supplied data can lead to vulnerabilities like code injection and should be avoided.
 
+### 77. Class vs Module
+`class` and `module` are different concept in Javascript. Classes define the blueprint for objects and promote object-oriented programming principles like encapsulation, inheritance, and polymorphism. `module` is a way to modularize big project into different files for each of maintenance and being a unit. Modules help in separating concerns, promoting code reusability, maintainability, and scalability. Whenever you need to separate functionality (function or class or variable), you need module `export` and `import`.
+
+```javascript
+// C1.js
+// export module
+export default class C1 {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+// Caller.js
+// import module
+import MyClass from './C1.js';
+
+const instance = new C1(42);
+
+----
+
+// module.js
+export const greeting = 'Hello, World!';
+
+export function greet(name) {
+  return `Hello, ${name}!`;
+}
+
+// caller2.js
+import { greeting, greet } from './module.js';
+
+console.log(greeting);      // Outputs: Hello, World!
+console.log(greet('John')); // Outputs: Hello, John!
+```
+
 ```
   \o/
    |       We did it!
