@@ -585,6 +585,25 @@ fn main(
     f32(global_id.x) * 1000. + f32(local_id.x);
 }
 `;
+
+async function init() {
+  // 1: request adapter and device
+  if (!navigator.gpu) {
+    throw Error(`WebGPU not supported.`);
+  }
+
+  const adapter = await navigator.gpu.requestAdapter();
+  if (!adapter) {
+    throw Error(`Couldn't request WebGPU adapter.`);
+  }
+
+  const device = await adapter.requestDevice();
+
+  // 2: Create a shader module from the shader template literal
+  const shaderModule = device.createShaderModule({
+    code: shader
+  });
+  ...
 ```
 
 ```
