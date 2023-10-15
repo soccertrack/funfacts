@@ -1497,7 +1497,7 @@ console.log(arr instanceof Object);        // true.  <- array is from object
 ### 74. Callback vs Closure
 `Callback` is a function that is pass into a function as param to facilitate asynchronous programming. 
 
-`Closure` is a function that return from an outer function so that you closure later. A closure is a function that "remembers" the environment in which it was created, including the variables and parameters available at that time. It encapsulates the state of the surrounding function, allowing access to its scope even after the outer function has finished executing.
+`Closure` is a function that return from a function so that you can use that returned function later. A closure is a function that "remembers" the environment in which it was created, including the variables and parameters available at that time. It encapsulates the state of the surrounding function, allowing access to its scope even after the outer function has finished executing.
 
 ```javascript
 // Callback example
