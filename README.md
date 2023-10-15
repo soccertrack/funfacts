@@ -1424,11 +1424,10 @@ console.log(MyClass.privateProperty); // Error, can't call this from outside
 
 ```
 ```
-      __ \/ __
-     /o \{}/ o\
-     \   ()   /
-      `> /\ <`
-      (o/\/\o)
+ ^...^
+<_* *_>   
+  \_/
+        
 ```
 ### 69. undefined
 It's important to avoid leaving variables as `undefined` in your JavaScript code. Variables are considered undefined when they haven't been assigned or initialized. However, it's essential to be aware of certain undefined behaviors in JavaScript that can affect your code:
@@ -1527,6 +1526,16 @@ closure('Inner value');
 closure = null;
 ```
 
+```
+                (\__/)  .~    ~. ))
+                /O O `./      .'
+   (ALMOST     {O__,   \    {
+    THERE)       / .  . )    \
+                 |-| '-' \    } ))
+                .(   _(   )_.'
+               '---.~_ _ _&
+```
+
 ### 75. Common Math issues in Javascript
 Here are some common Math issues to beware of:
 
@@ -1594,9 +1603,77 @@ export function greet(name) {
 import { greeting, greet } from './module.js';
 
 console.log(greeting);      // Outputs: Hello, World!
-console.log(greet('John')); // Outputs: Hello, John!
+console.log(greet('Lenny')); // Outputs: Hello, Lenny!
 ```
 
+### 78. debugger keyword
+You can break into a debugger from your JavaScript code using the `debugger` statement. The debugger statement is a JavaScript statement that tells the debugger to pause the execution of your code at that point, allowing you to inspect the current state, variables, and the call stack.
+
+```javascript
+function foo() {
+  let x = 7;
+  // code...
+  debugger;  // Execution will pause here and you can trace from IDE/Devtools
+  // code...
+}
+
+foo();
+```
+
+### 79. console tricks
+`console` object in JavaScript provides several useful methods beyond `log`, `warn`, and `error` that can help you with debugging, profiling, and improving the efficiency of your code. Here are example for `table`, `time`, `timeEnd`, `trace` & `assert`.
+
+```javascript
+// console.table for formatting
+const data = [
+  { name: 'Lenny', id: 1234 },
+  { name: 'Kenny', id: 4567 }
+];
+
+console.table(data);
+
+┌─────────┬─────────┬──────┐
+│ (index) │  name   │  id  │
+├─────────┼─────────┼──────┤
+│    0    │ 'Lenny' │ 1234 │
+│    1    │ 'Kenny' │ 4567 │
+└─────────┴─────────┴──────┘
+
+// console.time for performance profiling
+
+console.time('layout');
+// Some code to be measured
+console.timeEnd('layout');
+
+// console.trace
+
+function b() {
+  console.trace('Trace:');
+}
+
+b();
+
+// Trace: Trace:
+//    at b (/tmp/8mfnyf9B14.js:9:11)
+//    at Object.<anonymous> (/tmp/8mfnyf9B14.js:12:1)
+//    at Module._compile (node:internal/modules/cjs/loader:1256:14)
+
+// console.assert (used in unit test)
+
+console.assert(true);   // everything ok, no op.
+console.assert(false);  // show error
+
+```
+
+### 80. Use Template literals
+Template literals allow you to interpolate variables or expressions into a string by using ${} syntax within the template string. Use this instead of str1 + str2. This method makes code more readable.
+
+```javascript
+const num = 7;
+const name = 'Lenny';
+
+console.log(`The value of num is: ${num}, name: ${name}`);
+```
 ```
   \o/
    |       We did it!
