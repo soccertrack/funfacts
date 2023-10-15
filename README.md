@@ -120,13 +120,20 @@ func();
 
 
 ### 06. Loose equity (==) vs Strict equity
-Loose equity (`==`) will attempt to convert before doing comparison, while strict equity (`===`) does not convert.
+Loose equity (`==`) will attempt to convert before doing comparison, while strict equity (`===`) does not convert. This is true for all except for `object`. See code below:
 
 ```javascript
 // loose equity check
-console.log(42 == '42');  // Outputs: true (type coercion: '42' is coerced to number 42)
+console.log(42 == '42');     // true (type coercion: '42' is coerced to number 42)
 // strict equity check
-console.log(42 === '42');  // Outputs: false (different types)
+console.log(42 === '42');    // false (different types)
+
+const obj1 = { value: 1 };
+const obj2 = { value: 1 };
+
+// unexpected here. why is object comparing reference?
+console.log(obj1 == obj2);   // Output: false, unexpected
+console.log(obj1 === obj2);  // Output: false, expected
 
 ```
 
