@@ -1722,6 +1722,12 @@ Promise.any([promise1, promise2, promise3])
     console.error('All promises were rejected:', error);      // all promised rejected
   });
 ```
+
+### 82. More behavior to know in Javascript String
+`String` is immutatable in Javascript and you can't change character in a `String` other than creating a new String instance.
+- Using `+ operator` with String will behave depending on context `eg. var result = 5 + "5"; // "55"`
+- Assigning with string[index] will never error out but it does nothing. `let a = '123'; a[1] = 'b'; // '123'`
+- String is encoded with UTF-16 (means 2 bytes per character), you can do unicode in it. `var unicodeString = "\u{1F609}"; // emoji`
 ```
   \o/
    |       We did it!
