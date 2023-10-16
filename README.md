@@ -1758,6 +1758,10 @@ isolate.enter();
 v8.Context.Run(context, "console.log('from isolate!')");
 isolate.exit();
 ```
+
+### 83. Javascript Bytecode & Web Assembly
+Javascript `bytecode` is an intermediate code that Javascript engine use. The internals of `bytecode` varies from one Javascript engine to the next. For eg. bytecode is V8 is different from JavascriptCode. `WebAssembly (Wasm)` is an attempt to standardize and provide a common bytecode format that can be executed efficiently across different web browsers and platforms. WebAssembly is a binary instruction format designed as a portable compilation target for high-level programming languages. It aims to enable execution at near-native speed and efficiency across diverse hardware and software platforms.
+
 ```
   \o/
    |       We did it!
