@@ -1736,6 +1736,28 @@ Promise.any([promise1, promise2, promise3])
 - Using `+ operator` with String will behave depending on context `eg. var result = 5 + "5"; // "55"`
 - Assigning with string[index] will never error out but it does nothing. `let a = '123'; a[1] = 'b'; // '123'`
 - String is encoded with UTF-16 (means 2 bytes per character), you can do unicode in it. `var unicodeString = "\u{1F609}"; // emoji`
+- 
+### 83. Javascript Isolates (Advanced)
+With `V8` engine, Javascript engine is always running in a single thread within an `isolate`. An isolate in V8 represents a separate instance of the V8 engine. Each isolate has its own memory heap and JavaScript context. This means that variables, objects, and code within one isolate are isolated from those in another isolate. Isolates are used to enable concurrent JavaScript execution without interference between different instances of V8. This isolation is helping in security & performance.
+
+Isolate has context, this context is the environment which the Javascript is running with. Context can be `node.js` or `chrome browser` or `web worker` or other environment hosting a javascript engine with a thread.
+
+You can create your own isolate with the sample below in node.js. 
+
+```javascript
+const v8 = require('v8');
+
+// Create a new V8 isolate
+const isolate = new v8.Isolate();
+
+// Create a new context within the isolate
+const context = isolate.createContext();
+
+// Enter the context to run code
+isolate.enter();
+v8.Context.Run(context, "console.log('from isolate!')");
+isolate.exit();
+```
 ```
   \o/
    |       We did it!
