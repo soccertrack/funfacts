@@ -414,3 +414,55 @@ function App() {
 ```
 
 The ContextProvider still exhibits some outstanding issues. Consider a scenario where your application receives diverse data types that necessitate multiple layers of Providers. This can become challenging to handle. However, for straightforward global state management, useContext stands out as the optimal choice.
+
+### 20. Jotai as global state
+`Jotai` uses atom-based state offers finer control and can be use as a global state. It has all the benefits of useContext but without stuffing Provider layer in the app. Overall, high level features:
+
+- Isolated State: Each atom represents a distinct unit of state. This isolation means that changes to one atom do not affect other atoms. It's especially useful when dealing with complex state structures or lists of items where you want fine-grained control over individual items.
+
+- Selective Updates: When a change occurs in an atom, only components that explicitly depend on that atom are re-rendered. This fine-grained reactivity ensures that components respond only to the specific state changes they care about, which can significantly improve performance.
+
+### 21. useMemo
+The `useMemo` hook in React is used to optimize and memoize the result of expensive computations or calculations. It's helpful in scenarios where you want to prevent the re-computation of values on every render. In this example, the `calculateFactorial` will only run if `number` is never seen before.
+
+```javascript
+
+function Factorial({ number }) {
+  const factorial = useMemo(() => calculateFactorial(number), [number]);
+
+  return <div>{`Factorial of ${number} is ${factorial}`}</div>;
+}
+
+function calculateFactorial(n) {
+  if (n <= 1) return 1;
+  return n * calculateFactorial(n - 1);
+}
+```
+
+### 22. More on useEffect
+No.13 talk about different use of `useEffect` to mimic React class lifecycle. The thing to take note is `useEffect` should only be used if there's a side-effect with some data state change that you want to synchronize with.
+
+There are two common cases in which you don’t need Effects:
+
+- You don’t need Effects to transform data for rendering. For example, let’s say you want to filter a list before displaying it. You might feel tempted to write an Effect that updates a state variable when the list changes. However, this is inefficient. When you update the state, React will first call your component functions to calculate what should be on the screen. Then React will “commit” these changes to the DOM, updating the screen. Then React will run your Effects. If your Effect also immediately updates the state, this restarts the whole process from scratch! To avoid the unnecessary render passes, transform all the data at the top level of your components. That code will automatically re-run whenever your props or state change.
+- You don’t need Effects to handle user events. For example, let’s say you want to send an /api/buy POST request and show a notification when the user buys a product. In the Buy button click event handler, you know exactly what happened. By the time an Effect runs, you don’t know what the user did (for example, which button was clicked). This is why you’ll usually handle user events in the corresponding event handlers.
+
+You do need Effects to synchronize with external systems. For example, you can write an Effect that keeps a jQuery widget synchronized with the React state. You can also fetch data with Effects: for example, you can synchronize the search results with the current search query. Keep in mind that modern frameworks provide more efficient built-in data fetching mechanisms than writing Effects directly in your components. More information with sample [here](https://react.dev/learn/you-might-not-need-an-effect)
+
+
+### 23. Custom Hook
+A custom hook in React is a JavaScript function that starts with the prefix "use" and follows the rules of the Hooks API. Custom hooks allow you to extract and reuse stateful logic in functional components, making your code more modular and easier to maintain. To consume this custom hook, just call `const id = useUniqueId()`.
+
+
+```javascript
+import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
+
+function useUniqueId() {
+  const [id] = useState(() => uuidv4());
+
+  return id;
+}
+
+export default useUniqueId;
+```
