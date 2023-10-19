@@ -550,7 +550,50 @@ function ParentComponent() {
 }
 ```
 
-### 27. React Profiling
+### 27. React Callback
+In some scenarios, you may encounter situations where an event or change occurs in a child component, and you need to inform the parent component about it. To address this, React offers a straightforward solution called `React callback`.
+
+React callbacks serve as a clean and structured means of communication between components. They help maintain a clear separation of concerns and create well-defined boundaries between parent and child components. It's a valuable approach for passing information and events up the component hierarchy.
+
+However, it's important to exercise caution when applying this pattern in complex applications with multiple layers. Excessive use of callbacks across many component layers can potentially hinder maintainability and lead to code that's harder to manage. In such cases, it might be worthwhile to explore alternative solutions for state management and component communication.
+
+```javascript
+interface ChildProps {
+  onCheckboxChanged: (isChecked: boolean) => void;
+}
+
+function Child({ onCheckboxChanged }: ChildProps) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheck = () => {
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
+
+    // callback to parent here.
+    onCheckboxChanged(newCheckedState);
+  };
+
+  return (
+     <input
+       type="checkbox"
+       checked={isChecked}
+       onChange={handleCheck}
+     />
+  );
+}
+
+// Parent
+function Parent() {
+  const handleChildCheckboxChanged = (isChecked: boolean) => {
+    console.log('checkbox state:', isChecked);
+  };
+
+  return (
+    <div>
+      <Child onCheckboxChanged={handleChildCheckboxChanged} />
+    </div>
+  );
+```
 
 ### 28. React render test
 
@@ -559,7 +602,4 @@ function ParentComponent() {
 ### 30. Publishing react component to NPM
 
 ### 31. React Fiber
-
-### 32. React Fiber
-
 
