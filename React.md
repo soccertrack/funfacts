@@ -44,6 +44,13 @@ React employs the Virtual DOM to enhance updates by employing a process called "
 This approach is designed to be efficient. It targets and applies changes only to the portions of the Virtual DOM tree that differ from the previous version, minimizing interactions with the real HTML DOM. This is essential for improving performance since direct manipulation of the HTML DOM can be sluggish and resource-intensive.
 It calculates the differences between these two virtual representations. This process is known as "reconciliation."
 
+```mermaid
+graph TD
+  A[Initial Virtual DOM] -->|Reconciliation| B[New Virtual DOM]
+  B -->|Create| C[Diff-ed Subtree in Virtual DOM]
+  C -->|Render| D[Update HTML DOM Subtree]
+```
+
 ### 03. JSX
 JSX is a convenient syntax for defining the structure and content of your React components. It's transpiled (at build time) into JavaScript code that creates React elements, which are then rendered into the HTML DOM to display your user interface.
 
@@ -91,3 +98,22 @@ Why do we need StrictMode?
 StrictMode does double invocation. It helps identify issues like unintentional side effects in the render phase or components that may rely on a specific rendering order. This is only during development.
 It's important to understand that this behavior is only seen in the development environment when React Strict Mode is enabled. In a production environment, this double invocation doesn't occur, and your components behave as expected.
 
+### 07. React Router
+`React router` handles routing and navigation in React applications. It enables you to create single-page applications (SPAs) with dynamic URLs, allowing you to define different components for different routes without the need for full-page reload. In this code example, `/wallet` will result in the rendering of `<Wallet/>` component. Whenever the `path` doesn't match to any known paths, it will send to the default which is `<NotFound/>` in this example. React router supports HTML5 history API which means 
+back and forward are automatically handled.
+
+```javascript
+function App() {
+  return (
+    <Router>
+      <div>
+        <Switch>
+          <Route path="/info"><Info /></Route>
+          <Route path="/wallet"><Wallet /></Route>
+          <Route><NotFound /></Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+```
