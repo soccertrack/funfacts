@@ -64,11 +64,13 @@ These are some must have tools for React.
 - [Prettier](https://prettier.io/)
 - [VS Code](https://code.visualstudio.com/)
 
-### 05. Update Highlights
-One of the tool that we use to show render update is in React Dev Tools. Go into Chrome dev tools (Cmd, Shift+i) and go to React tab.
+### 05. Show Update Highlights
+One of the tool that we use to show render update is in React Dev Tools. Go into Chrome dev tools (Cmd, Option+i) and go to Components tab.
 
-Click on the "Updates" tab.
-Click on the "Show update indicator" checkbox.
+Next to the search box, click on the `settings` icon.
+Click on the " Highlight updates when components render" checkbox.
+
+This tool is invaluable to show when your React application does unneccessary updates which is bad for performance.
 
 ### 06. React StrictMode
 You may have seen the following code. This code enables `StrictMode` for React development.
