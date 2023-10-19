@@ -468,6 +468,35 @@ export default useUniqueId;
 ```
 
 ### 24. Passing Children to a component
+Passing children is straigt-forward, use ReactNode as the type.
+
+```javascript
+import React, { ReactNode } from 'react';
+
+interface MyComponentProps {
+  children: ReactNode; // ReactNode allows any valid JSX content
+}
+
+function MyComponent({ children }: MyComponentProps) {
+  return (
+    <div>
+      <h2>My Component</h2>
+      {children}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <MyComponent>
+        <p>This is some content passed as children.</p>
+        <button>Click me</button>
+      </MyComponent>
+    </div>
+  );
+}
+```
 
 ### 25. What is React.forwardRef
 
