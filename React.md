@@ -498,9 +498,57 @@ function App() {
 }
 ```
 
-### 25. What is React.forwardRef
+### 25. What is useRef
+`useRef` is a hook in React that creates a mutable object called a "ref object." It acts as a reference to a HTML DOM element or to a value that persists across renders.
+The primary purpose of useRef is to provide mutable data that doesn't cause re-renders when it changes. This makes it useful for managing values that need to be updated without causing a component to re-render. In the code below, useRef is creating a reference & later use it to hold input HTML element to control it.
 
-### 26. When to use useRef
+```javascript
+function Component() {
+  // Create a ref using the useRef hook
+  const inputRef = useRef(null);
+
+  // Function to focus on the input element
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input type="text" ref={inputRef} placeholder="Type here" />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+}
+```
+### 26. What is React.forwardRef
+`React.forwardRef` allows a component to create an empty `ref` and pass it down to a child component for child component to set it to a value or HTML DOM element. That empty `ref` in the
+parent code can access and control the attached `ref` later.
+
+```javascript
+const ChildComponent = React.forwardRef((props, ref) => {
+  const inputRef = ref || useRef();
+
+  // No useImperativeHandle needed
+  return (
+    <input
+      ref={inputRef}
+      type="text"
+      placeholder={props.placeholder}
+    />
+  );
+});
+
+function ParentComponent() {
+  const childRef = useRef();
+
+  return (
+    <div>
+      <ChildComponent ref={childRef} placeholder="Enter text here" />
+      <button onClick={() => childRef.current.focus()}>Focus Input</button>
+    </div>
+  );
+}
+```
 
 ### 27. React Profiling
 
