@@ -1,8 +1,8 @@
 ## R𝒶𝓃𝒹ℴ𝓂 REACT 𝒷𝒾𝓉𝓈
 ```
- /\_/\  
-( o.o ) 
- > ^ <
+    |\__/,|   (`\
+  _.|o o  |_   ) )
+-(((---(((--------  
 ```
 ### 00. Use functional component
 `Functional component` was introduced in React 16.8. It is the preferred way to write React component (as opposed to older class component). 
@@ -117,7 +117,12 @@ function App() {
   );
 }
 ```
-
+```
+  / _ \
+\_\(_)/_/
+ _//o\\_ 
+  /   \
+```
 ### 08. Error Boundary
 Error boundaries in React are a powerful feature that allows you to gracefully handle and display errors that occur within the component tree.
 Think of it like a `try .. catch .. finally` block, if error occurred within the subtree, an error UI will display and do whatever logging to ensure
@@ -313,7 +318,14 @@ return(<>
 <button onClick={() => setCount(count + 1)}>+</button>
 </>);
 ```
-
+```
+            .''
+  ._.-.___.' (`\
+ //(        ( `'
+'/ )\ ).__. ) 
+' <' `\ ._/'\
+   `   \     \
+```
 ### 16. useState with Object
 You can use useState for object as well. Imagine this code. You can reference to the property of object for rendering. However, please note that we need to create a new object whenever we setUser.
 When updating state variables that are objects or arrays, it's important to create a new object or array to trigger a re-render. React relies on shallow comparison to determine if state has changed.
@@ -466,7 +478,14 @@ function useUniqueId() {
 
 export default useUniqueId;
 ```
-
+```
+           __n__n__
+    .------`-\00/-'
+   /  ##  ## (oo)
+  / \## __   ./
+     |//YY \|/
+     |||   |||
+```
 ### 24. Passing Children to a component
 Passing children is straigt-forward, use ReactNode as the type.
 
@@ -616,7 +635,13 @@ Ever wonder what happen when you run `npm run build` or `yarn build`. There's a 
   - `service worker generation for version caching`
 - `Version bumping` to the bundle
 
-### 30. Publishing react component to NPM
+```
+        _   ,_,   _
+       / `'=) (='` \
+      /.-.-.\ /.-.-.\ 
+      `      "      `
+```
+### 30. Publishing react component to NPM registry
 You have been using `npm install` or `yarn add` to add external library into your project but how do you publish a component. Here's the process:
 
 - Create your component.
@@ -649,18 +674,18 @@ export default ButtonComponent;
 - Run `npm publish`
 - Next you can pull it with `npm install awesome-button-xyz`.
 
-### 31. Choosing external package
+### 31. Choosing external package / library
 Sometimes, you won't have to reinvent the wheel when building a React application. In many cases, you'll search for external packages that can save you time and effort. However, when considering whether to include an external package, it's essential to evaluate various factors for feasibility before making a decision. Here are some key factors to consider:
 
-Security and Vulnerabilities: Assess the package's security. Check if there are any known vulnerabilities associated with the package. Tools like npm audit can help identify security issues.
+- Security and Vulnerabilities: Assess the package's security. Check if there are any known vulnerabilities associated with the package. Tools like npm audit can help identify security issues.
 
-Active Maintenance: Determine if the package is actively maintained. Check if there have been recent additions or updates to the package. An actively maintained package is more likely to stay compatible with the latest versions of React and other dependencies.
+- Active Maintenance: Determine if the package is actively maintained. Check if there have been recent additions or updates to the package. An actively maintained package is more likely to stay compatible with the latest versions of React and other dependencies.
 
-Bundle Size: Consider the payload size of the package. Running npm install <package> is straightforward, but it can pull in a substantial bundle. Be mindful of how the package impacts your application's size, especially if you're targeting performance optimization.
+- Bundle Size: Consider the payload size of the package. Running npm install <package> is straightforward, but it can pull in a substantial bundle. Be mindful of how the package impacts your application's size, especially if you're targeting performance optimization.
 
-Dependency Chain: Check if the package pulls in other dependencies. Sometimes, a seemingly small package may introduce a chain of dependencies that can significantly increase your project's size and complexity.
+- Dependency Chain: Check if the package pulls in other dependencies. Sometimes, a seemingly small package may introduce a chain of dependencies that can significantly increase your project's size and complexity.
 
-Narrow Usage: Evaluate the percentage of the package that you actually need. If you find that you're using only a small portion of the package's functionality, consider whether it's more efficient to extract and use just that part from open source libraries or write it yourself.
+- Narrow Usage: Evaluate the percentage of the package that you actually need. If you find that you're using only a small portion of the package's functionality, consider whether it's more efficient to extract and use just that part from open source libraries or write it yourself.
 
 To help answer some of these questions, you can use tools like [Bundlephobia](https://bundlephobia.com) to analyze the package's size, dependencies, and potential performance impact on your project. This way, you can make informed decisions about whether to include an external package in your React application.
 
@@ -671,7 +696,7 @@ React uses `unidirectional data flow`. It refers to the practice of controlling 
 
 This allows for clear and predictable communication between components.
 
-### 32. React Concurrent Mode & Fiber
+### 33. React Concurrent Mode & Fiber
 `Concurrent Mode` is based on a new rendering algorithm called concurrent rendering. `Concurrent rendering` allows React to work on multiple versions of the UI at the same time. This is done by breaking down the UI into smaller chunks, and then rendering each chunk in parallel. Smaller chunk is good for the UI thread since it less likely to block. This makes it possible to build more responsive and performant React applications.
 
 `React Fiber` is a new rendering algorithm. Fiber works by breaking down the UI into smaller chunks, which are called fibers. Fibers can be paused, resumed, and prioritized. This allows React to work on multiple tasks at once, without blocking the main thread. Concurrent Mode uses Fiber to render multiple versions of the UI at the same time. For example, if a user is typing in a text input, React will render a new version of the UI with each keystroke. However, React will not block the main thread while it is rendering the new UI. This allows the user to continue typing, even while the UI is updating.
