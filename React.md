@@ -584,9 +584,10 @@ function Child({ onCheckboxChanged }: ChildProps) {
 
 // Parent
 function Parent() {
-  const handleChildCheckboxChanged = (isChecked: boolean) => {
+  // ensure we memoized callback function
+  const handleChildCheckboxChanged = useCallback((isChecked: boolean) => {
     console.log('checkbox state:', isChecked);
-  };
+  }, []);
 
   return (
     <div>
